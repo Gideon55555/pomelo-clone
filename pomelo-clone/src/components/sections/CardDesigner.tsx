@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import Eyebrow from "@/components/common/Eyebrow";
 import MagneticButton from "@/components/common/MagneticButton";
 import {
   Crosshair,
@@ -13,7 +14,8 @@ import {
   Undo2,
   Users,
 } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { FULL_MOTION, gsap, useGSAP } from "@/lib/gsap";
 
 const choices = [
   { label: "Choose your product", detail: "Mobile app, web platform, or custom software.", icon: MonitorSmartphone, position: "left-0 top-8 sm:left-[10%]" },
@@ -27,10 +29,118 @@ const choices = [
 export default function CardDesigner() {
   const [selected, setSelected] = useState<number | null>(null);
   const shouldReduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const playgroundRef = useRef<HTMLDivElement>(null);
+  const editorRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const lineRef = useRef<SVGPolylineElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      // Desktop: pin the section and scrub the full sequence — chips fly out
+      // from the editor, the progress line draws between them, then the
+      // editor's code lines "compile" in. Releases after ~1.5 viewports.
+      mm.add(`${FULL_MOTION} and (min-width: 1024px)`, () => {
+        const section = sectionRef.current;
+        const playground = playgroundRef.current;
+        const editor = editorRef.current;
+        const svg = svgRef.current;
+        const line = lineRef.current;
+        if (!section || !playground || !editor || !svg || !line) return;
+
+        const chips = gsap.utils.toArray<HTMLElement>(".designer-chip", section);
+        const playgroundRect = playground.getBoundingClientRect();
+        const editorRect = editor.getBoundingClientRect();
+        const centerX = editorRect.left + editorRect.width / 2;
+        const centerY = editorRect.top + editorRect.height / 2;
+
+        const chipRects = chips.map((chip) => chip.getBoundingClientRect());
+        const chipDeltas = chipRects.map((rect) => ({
+          dx: centerX - (rect.left + rect.width / 2),
+          dy: centerY - (rect.top + rect.height / 2),
+        }));
+
+        const points = chipRects
+          .map(
+            (rect) =>
+              `${rect.left - playgroundRect.left + rect.width / 2},${
+                rect.top - playgroundRect.top + rect.height / 2
+              }`
+          )
+          .join(" ");
+        line.setAttribute("points", points);
+        const lineLength = line.getTotalLength();
+        gsap.set(line, { strokeDasharray: lineLength, strokeDashoffset: lineLength });
+        gsap.set(svg, { autoAlpha: 1 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "+=150%",
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1,
+          },
+        });
+
+        tl.from(chips, {
+          x: (index: number) => chipDeltas[index].dx,
+          y: (index: number) => chipDeltas[index].dy,
+          opacity: 0,
+          scale: 0.8,
+          duration: 1,
+          stagger: 0.18,
+          ease: "power3.out",
+        })
+          .to(line, { strokeDashoffset: 0, duration: 1.4, ease: "none" }, 0.4)
+          .fromTo(
+            ".editor-line",
+            { autoAlpha: 0, clipPath: "inset(0 100% 0 0)" },
+            {
+              immediateRender: true,
+              autoAlpha: 1,
+              clipPath: "inset(0 0% 0 0)",
+              duration: 0.5,
+              stagger: 0.35,
+              ease: "none",
+            },
+            ">-0.3"
+          );
+      });
+
+      // Tablet (chips visible, no pin): simple staggered entrance.
+      mm.add(
+        `${FULL_MOTION} and (min-width: 640px) and (max-width: 1023px)`,
+        () => {
+          const chips = gsap.utils.toArray<HTMLElement>(
+            ".designer-chip",
+            sectionRef.current
+          );
+          if (!chips.length) return;
+          gsap.from(chips, {
+            opacity: 0,
+            y: 16,
+            stagger: 0.08,
+            duration: 0.6,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: playgroundRef.current,
+              start: "top 80%",
+              once: true,
+            },
+          });
+        }
+      );
+    },
+    { scope: sectionRef }
+  );
 
   return (
-    <section id="services" className="relative isolate min-h-[720px] overflow-hidden bg-[#000339] px-5 pb-20 pt-24 text-white light:bg-[#f1f2f2] light:text-[#000339] sm:pt-28">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(22,72,255,0.28),transparent_76%)] light:bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(52,132,255,0.15),transparent_76%)]" />
+    <section ref={sectionRef} id="services" className="relative isolate min-h-[720px] overflow-hidden bg-[#000339] px-5 pb-20 pt-24 text-white light:bg-[#f1f2f2] light:text-[#000339] sm:pt-28">
+      <div className="glow-accent absolute inset-0 bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(22,72,255,0.28),transparent_76%)] light:bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(52,132,255,0.15),transparent_76%)]" />
       <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(52,132,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(52,132,255,0.04)_1px,transparent_1px)] [background-size:84px_84px]" />
       <div className="hero-orb pointer-events-none absolute left-[25%] top-[53%] h-64 w-64 rounded-full bg-[#1648ff]/20 blur-[100px]" />
       <div className="hero-orb pointer-events-none absolute right-[25%] top-[56%] h-64 w-64 rounded-full bg-[#3484ff]/15 blur-[100px] [animation-delay:-7s]" />
@@ -42,17 +152,24 @@ export default function CardDesigner() {
         transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 mx-auto max-w-[1050px] text-center"
       >
-        <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff] light:text-[#1648ff]">
-          Your product, your way
-        </p>
+        <Eyebrow
+          text="Your product, your way"
+          className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff] light:text-[#1648ff]"
+        />
         <h2 className="mx-auto mt-3 max-w-[570px] text-[43px] font-semibold leading-[0.98] tracking-[-0.065em] sm:text-[58px]">
           You define it,
           <br />
           we build it
         </h2>
-        <p className="mx-auto mt-5 max-w-[560px] text-[13px] leading-relaxed text-white/70 light:text-[#000339]/70 sm:text-[15px]">
+        <motion.p
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 16, filter: "blur(4px)" }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto mt-5 max-w-[560px] text-[13px] leading-relaxed text-white/70 light:text-[#000339]/70 sm:text-[15px]"
+        >
           From discovery to launch, we turn your ideas into high-performing digital products built around your business.
-        </p>
+        </motion.p>
         <div className="mt-5">
           <MagneticButton className="rounded-[2px] bg-gradient-to-r from-[#1648ff] to-[#3484ff] px-6 py-3 text-[14px] font-medium text-white shadow-[0_8px_24px_rgba(22,72,255,0.35)]">
             Start your project
@@ -60,11 +177,34 @@ export default function CardDesigner() {
         </div>
       </motion.div>
 
-      <div className="relative z-10 mx-auto mt-10 h-[370px] max-w-[860px] sm:mt-12">
+      <div ref={playgroundRef} className="relative z-10 mx-auto mt-10 h-[370px] max-w-[860px] sm:mt-12">
+        <svg
+          ref={svgRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-10 hidden h-full w-full opacity-0 lg:block"
+        >
+          <polyline
+            ref={lineRef}
+            fill="none"
+            stroke="url(#designer-line-gradient)"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+          <defs>
+            <linearGradient id="designer-line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#1648ff" stopOpacity="0.55" />
+              <stop offset="50%" stopColor="#80b4ff" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#3484ff" stopOpacity="0.55" />
+            </linearGradient>
+          </defs>
+        </svg>
+
         <motion.div
+          ref={editorRef}
           animate={shouldReduceMotion ? undefined : { y: [0, -5, 0], rotate: [-1, 1, -1] }}
           transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-1/2 top-[112px] h-[170px] w-[310px] -translate-x-1/2 overflow-hidden rounded-xl border border-[#80b4ff]/45 bg-[linear-gradient(135deg,rgba(22,72,255,0.32),rgba(0,3,57,0.86))] text-left shadow-[0_24px_55px_rgba(22,72,255,0.36)]"
+          className="absolute left-1/2 top-[112px] z-20 h-[170px] w-[310px] -translate-x-1/2 overflow-hidden rounded-xl border border-[#80b4ff]/45 bg-[linear-gradient(135deg,rgba(22,72,255,0.32),rgba(0,3,57,0.86))] text-left shadow-[0_24px_55px_rgba(22,72,255,0.36)]"
         >
           <div className="flex items-center gap-2 border-b border-white/[0.08] bg-[#000339]/70 px-4 py-2.5">
             <span className="h-2 w-2 rounded-full bg-[#1648ff]/80" />
@@ -75,9 +215,9 @@ export default function CardDesigner() {
             </span>
           </div>
           <div className="space-y-2 px-4 py-3.5 font-mono text-[11px] leading-relaxed">
-            <p><span className="text-[#3484ff]">import</span> <span className="text-white/85">&#123; idea &#125;</span> <span className="text-[#3484ff]">from</span> <span className="text-[#9ac8ff]">&quot;you&quot;</span>;</p>
-            <p><span className="text-[#3484ff]">const</span> <span className="text-[#80b4ff]">product</span> <span className="text-white/60">=</span> <span className="text-[#3484ff]">await</span> <span className="text-[#b3d2ff]">qua</span><span className="text-white/60">.</span><span className="text-[#80b4ff]">build</span><span className="text-white/60">(idea);</span></p>
-            <p><span className="text-[#b3d2ff]">product</span><span className="text-white/60">.</span><span className="text-[#80b4ff]">ship</span><span className="text-white/60">();</span> <span className="text-white/35">{"// build · ship · grow"}</span></p>
+            <p className="editor-line"><span className="text-[#3484ff]">import</span> <span className="text-white/85">&#123; idea &#125;</span> <span className="text-[#3484ff]">from</span> <span className="text-[#9ac8ff]">&quot;you&quot;</span>;</p>
+            <p className="editor-line"><span className="text-[#3484ff]">const</span> <span className="text-[#80b4ff]">product</span> <span className="text-white/60">=</span> <span className="text-[#3484ff]">await</span> <span className="text-[#b3d2ff]">qua</span><span className="text-white/60">.</span><span className="text-[#80b4ff]">build</span><span className="text-white/60">(idea);</span></p>
+            <p className="editor-line"><span className="text-[#b3d2ff]">product</span><span className="text-white/60">.</span><span className="text-[#80b4ff]">ship</span><span className="text-white/60">();</span> <span className="text-white/35">{"// build · ship · grow"}</span></p>
           </div>
         </motion.div>
 
@@ -87,13 +227,9 @@ export default function CardDesigner() {
             type="button"
             aria-pressed={selected === index}
             onClick={() => setSelected(selected === index ? null : index)}
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
             whileHover={{ y: -5, scale: 1.025 }}
             whileTap={{ scale: 0.97 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: index * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className={`absolute z-20 hidden w-[280px] rounded-md border px-3.5 py-2.5 text-left backdrop-blur-md transition-colors sm:block ${choice.position} ${
+            className={`designer-chip absolute z-20 hidden w-[280px] rounded-md border px-3.5 py-2.5 text-left backdrop-blur-md transition-colors sm:block ${choice.position} ${
               selected === index
                 ? "border-[#80b4ff]/75 bg-[#1648ff]/30 shadow-[0_10px_26px_rgba(22,72,255,0.34)] light:border-[#1648ff]/55 light:bg-[#1648ff]/15"
                 : "border-white/10 bg-[#000339]/65 hover:border-[#3484ff]/55 hover:bg-[#1648ff]/15 light:border-[#000339]/10 light:bg-white/75 light:hover:bg-[#1648ff]/10"

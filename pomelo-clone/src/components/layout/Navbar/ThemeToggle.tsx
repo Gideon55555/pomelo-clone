@@ -7,7 +7,12 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
-    setTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
+    // Deferred read of the pre-paint theme script's result; avoids a
+    // synchronous setState in the effect body.
+    const frame = requestAnimationFrame(() => {
+      setTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
+    });
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   const toggle = () => {

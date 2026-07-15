@@ -1,12 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, type MouseEvent as ReactMouseEvent } from "react";
 import { NAV_LINKS } from "@/constants/navigation";
 
 export default function NavLinks() {
   // Track hover state for ALL menu items
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  // Which side the cursor entered/left from — the underline draws in from the
+  // entry side and collapses toward the exit side.
+  const [underlineOrigin, setUnderlineOrigin] = useState<"left" | "right">("left");
+
+  const sideOf = (event: ReactMouseEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    return event.clientX < rect.left + rect.width / 2 ? "left" : "right";
+  };
 
   return (
     <ul className="hidden items-center gap-5 text-[13px] font-medium tracking-[-0.025em] text-white/80 light:text-[#000339]/80 lg:flex">
@@ -17,8 +25,14 @@ export default function NavLinks() {
           <li
             key={link.title}
             className="relative py-3"
-            onMouseEnter={() => setHoveredItem(link.title)}
-            onMouseLeave={() => setHoveredItem(null)}
+            onMouseEnter={(event) => {
+              setUnderlineOrigin(sideOf(event));
+              setHoveredItem(link.title);
+            }}
+            onMouseLeave={(event) => {
+              setUnderlineOrigin(sideOf(event));
+              setHoveredItem(null);
+            }}
           >
             {/* Main Link Element */}
             <button className="group relative z-20 flex items-center gap-1.5 transition-colors duration-300 hover:text-white light:hover:text-[#000339]">
@@ -45,7 +59,9 @@ export default function NavLinks() {
                 initial={false}
                 animate={{ scaleX: isHovered ? 1 : 0 }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute -bottom-1 left-0 right-0 h-px origin-left bg-[#3484FF]"
+                className={`absolute -bottom-1 left-0 right-0 h-px bg-[#3484FF] ${
+                  underlineOrigin === "left" ? "origin-left" : "origin-right"
+                }`}
               />
             </button>
 

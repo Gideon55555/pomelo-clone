@@ -1,3 +1,4 @@
+import AmbientHue from "@/components/common/AmbientHue";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import Capabilities from "@/components/sections/Capabilities";
@@ -11,6 +12,7 @@ import UseCases from "@/components/sections/UseCases";
 export default function Home() {
   return (
     <>
+      <AmbientHue />
       <Navbar />
       <Hero />
       <UseCases />

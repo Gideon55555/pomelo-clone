@@ -20,7 +20,7 @@ const columns = [
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-white/[0.07] bg-[#000339] px-6 pb-10 pt-16 text-white light:border-[#000339]/10 light:bg-[#e9ebec] light:text-[#000339] sm:px-10">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_50%_120%,rgba(22,72,255,0.16),transparent_70%)] light:bg-[radial-gradient(ellipse_40%_50%_at_50%_120%,rgba(52,132,255,0.12),transparent_70%)]" />
+      <div className="glow-accent absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_50%_120%,rgba(22,72,255,0.16),transparent_70%)] light:bg-[radial-gradient(ellipse_40%_50%_at_50%_120%,rgba(52,132,255,0.12),transparent_70%)]" />
 
       <div className="relative z-10 mx-auto max-w-[1050px]">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_2fr]">
