@@ -19,26 +19,23 @@ export default function Hero() {
         <div className="mx-auto flex max-w-[660px] flex-col items-center text-center">
           <Reveal delay={0.05}>
             <span className="rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-1.5 text-[10px] font-medium tracking-[-0.02em] text-white/55 shadow-[0_4px_20px_rgba(0,0,0,0.16)] backdrop-blur-md sm:text-xs">
-              Launch, scale up or future-proof your business
+              Software development company
             </span>
           </Reveal>
 
           <Reveal delay={0.15}>
             <h1 className="mt-7 text-[46px] font-semibold leading-[0.96] tracking-[-0.065em] sm:mt-8 sm:text-[62px] lg:text-[68px]">
-              Smart payments
-              <br />
-              infrastructure.
+              We build things
               <br />
               <span className="bg-gradient-to-r from-[#1648ff] via-[#3484ff] to-[#80b4ff] bg-clip-text text-transparent">
-                Zero friction.
+                that work
               </span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.25}>
-            <p className="mt-6 max-w-[410px] text-[13px] font-medium leading-[1.45] tracking-[-0.025em] text-white/78 sm:text-[15px]">
-              A modular, API-first, cloud-native platform powered by
-              <br className="hidden sm:block" /> AI to launch, operate, and manage your card business.
+            <p className="mt-6 max-w-[540px] text-[13px] font-medium leading-[1.45] tracking-[-0.025em] text-white/78 sm:text-[15px]">
+              Qua is a software development company that provides digital technology services. From mobile and web development to custom software solutions, we&apos;re dedicated to delivering innovative, high-quality solutions tailored to your unique needs.
             </p>
           </Reveal>
 

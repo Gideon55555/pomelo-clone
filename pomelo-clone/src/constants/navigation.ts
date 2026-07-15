@@ -1,40 +1,40 @@
 export const NAV_LINKS = [
-  { title: "Platform", href: "#platform" },
+  { title: "Services", href: "#services" },
   { 
-    title: "Issuing", 
-    href: "#issuing", 
+    title: "Solutions", 
+    href: "#solutions", 
     dropdown: true, 
-    items: ["Overview", "Card Issuing", "Tokenization"] 
+    items: ["Mobile Development", "Web Development", "Custom Software"] 
   },
   { 
-    title: "Processing", 
-    href: "#processing", 
+    title: "Expertise", 
+    href: "#expertise", 
     dropdown: true, 
-    items: ["Overview", "Credit Core", "Migrate", "Loyalty", "Stand In"] 
+    items: ["Product Strategy", "UI/UX Design", "Cloud Engineering", "Quality Assurance"] 
   },
   { 
-    title: "BIN Sponsorship", 
-    href: "#bin-sponsorship", 
+    title: "Industries", 
+    href: "#industries", 
     dropdown: true, 
-    items: ["Overview", "Sponsorship Setup"] 
+    items: ["Fintech", "Healthcare", "E-commerce", "SaaS"] 
   },
   { 
-    title: "Risk Management", 
-    href: "#risk-management", 
+    title: "Process", 
+    href: "#process", 
     dropdown: true, 
-    items: ["Overview", "Fraud Engine"] 
+    items: ["Discovery", "Design", "Development", "Launch"] 
   },
-  { title: "Use cases", href: "#use-cases" },
+  { title: "Our work", href: "#use-cases" },
   { 
-    title: "Company", 
+    title: "About", 
     href: "#company", 
     dropdown: true, 
-    items: ["About Us", "Careers"] 
+    items: ["Our Company", "Careers"] 
   },
   { 
-    title: "Tools", 
-    href: "#tools", 
+    title: "Insights", 
+    href: "#insights", 
     dropdown: true, 
-    items: ["API Docs", "Sandbox"] 
+    items: ["Blog", "Case Studies"] 
   },
 ];

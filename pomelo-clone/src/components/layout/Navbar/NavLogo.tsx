@@ -9,7 +9,7 @@ export default function NavLogo() {
         <path d="m9.1 0 7.9 4.1v8l-7.9-4V0Z" fill="#75B2FF" />
         <path d="m9.1 12 7.9-3.9V16l-7.9 4v-8Z" fill="#3484FF" />
       </svg>
-      <span>pomelo</span>
+      <span>qua</span>
     </Link>
   );
 }

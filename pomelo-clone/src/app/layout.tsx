@@ -8,8 +8,8 @@ const geistSans = Geist({
   fallback: ["ui-sans-serif", "system-ui", "sans-serif"], 
 });
 export const metadata: Metadata = {
-  title: "Pomelo Clone",
-  description: "Built with Next.js",
+  title: "Qua — Software Development Company",
+  description: "Digital products and custom software built for ambitious teams.",
 };
 
 export default function RootLayout({

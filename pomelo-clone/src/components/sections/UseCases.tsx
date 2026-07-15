@@ -4,20 +4,20 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const partners = [
-  { name: "Global66", mark: "⌁" },
-  { name: "AstroPay", mark: "" },
-  { name: "DiDi", mark: "◒" },
-  { name: "stori", mark: "✣" },
-  { name: "NOMAD", mark: "N" },
-  { name: "Bancolombia", mark: "" },
+  { name: "NORTH", mark: "◈" },
+  { name: "Venturely", mark: "" },
+  { name: "Orbit", mark: "◒" },
+  { name: "NEXUS", mark: "✣" },
+  { name: "APEX", mark: "A" },
+  { name: "elevate", mark: "" },
 ];
 
 const useCases = [
-  { title: "Payment Upgrade", description: "Modernize your payment experience.", tone: "from-[#1648ff] to-[#80b4ff]" },
-  { title: "Regional Expansion", description: "Launch your card program in new markets.", tone: "from-[#3484ff] to-[#b3d2ff]" },
-  { title: "Crypto Wallet", description: "Enable your users to spend their crypto through cards.", tone: "from-[#1648ff] to-[#5da0ff]" },
-  { title: "Co Branded Cards", description: "Build brand affinity with tailored rewards.", tone: "from-[#3484ff] to-[#9ac8ff]" },
-  { title: "Investments", description: "Make investing part of every customer journey.", tone: "from-[#1648ff] to-[#73aaff]" },
+  { title: "Mobile Apps", description: "Native and cross-platform apps built for real-world growth.", tone: "from-[#1648ff] to-[#80b4ff]" },
+  { title: "Web Platforms", description: "Fast, accessible digital products that people enjoy using.", tone: "from-[#3484ff] to-[#b3d2ff]" },
+  { title: "Custom Software", description: "Tailored software that simplifies complex operations.", tone: "from-[#1648ff] to-[#5da0ff]" },
+  { title: "Cloud Solutions", description: "Scalable cloud systems designed for reliable performance.", tone: "from-[#3484ff] to-[#9ac8ff]" },
+  { title: "Product Design", description: "Clear, intuitive experiences shaped around your users.", tone: "from-[#1648ff] to-[#73aaff]" },
 ];
 
 export default function UseCases() {
@@ -53,7 +53,7 @@ export default function UseCases() {
 
       <div className="relative mx-auto max-w-[1120px]">
         <p className="text-center text-[13px] font-medium tracking-[-0.025em] text-white/80">
-          Banks, fintechs, and global businesses run on our technology
+          Ambitious teams build their next digital product with Qua
         </p>
 
         <div className="mx-auto mt-7 grid max-w-[950px] grid-cols-2 items-center gap-x-8 gap-y-8 text-center sm:grid-cols-3 lg:grid-cols-6">
@@ -84,12 +84,12 @@ export default function UseCases() {
           transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="text-[8px] font-medium uppercase tracking-[0.28em] text-[#80b4ff]">
-            Use cases
+            What we build
           </p>
           <h2 className="mx-auto mt-3 max-w-[620px] text-[43px] font-semibold leading-[0.98] tracking-[-0.065em] sm:text-[58px]">
-            One technology,
+            Digital products,
             <br />
-            endless applications
+            built to perform
           </h2>
         </motion.div>
 
