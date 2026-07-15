@@ -14,7 +14,8 @@ export default function CustomCursor() {
 
   useEffect(() => {
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-    setEnabled(true);
+    // Deferred so the enable toggle isn't a synchronous setState in the effect.
+    const enableFrame = requestAnimationFrame(() => setEnabled(true));
 
     const handleMove = (event: MouseEvent) => {
       x.set(event.clientX);
@@ -26,7 +27,10 @@ export default function CustomCursor() {
     };
 
     window.addEventListener("mousemove", handleMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMove);
+    return () => {
+      cancelAnimationFrame(enableFrame);
+      window.removeEventListener("mousemove", handleMove);
+    };
   }, [x, y]);
 
   if (!enabled || shouldReduceMotion) return null;

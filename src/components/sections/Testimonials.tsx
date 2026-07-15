@@ -1,57 +1,56 @@
 "use client";
 
-import {
-  AnimatePresence,
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-} from "framer-motion";
-import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import Eyebrow from "@/components/common/Eyebrow";
+import { FULL_MOTION, gsap, useGSAP } from "@/lib/gsap";
 
+// GSAP quickTo drives rotateX/rotateY directly on the element — no React
+// re-render per mousemove, which keeps the tilt smooth at pointer frequency.
 function TiltCard({ children }: { children: ReactNode }) {
-  const rotateX = useMotionValue(0);
-  const rotateY = useMotionValue(0);
-  const springRotateX = useSpring(rotateX, { stiffness: 180, damping: 18 });
-  const springRotateY = useSpring(rotateY, { stiffness: 180, damping: 18 });
-  const shouldReduceMotion = useReducedMotion();
-  const [canHover, setCanHover] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setCanHover(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
-  }, []);
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add(`${FULL_MOTION} and (pointer: fine)`, () => {
+        const card = ref.current;
+        if (!card) return;
 
-  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
-    if (!canHover || shouldReduceMotion) return;
-    const rect = event.currentTarget.getBoundingClientRect();
-    const px = (event.clientX - rect.left) / rect.width - 0.5;
-    const py = (event.clientY - rect.top) / rect.height - 0.5;
-    rotateY.set(px * 9);
-    rotateX.set(-py * 9);
-  };
+        gsap.set(card, { transformPerspective: 900 });
+        const toRotateX = gsap.quickTo(card, "rotationX", { duration: 0.5, ease: "power3.out" });
+        const toRotateY = gsap.quickTo(card, "rotationY", { duration: 0.5, ease: "power3.out" });
 
-  const handleMouseLeave = () => {
-    rotateX.set(0);
-    rotateY.set(0);
-  };
+        const handleMove = (event: globalThis.MouseEvent) => {
+          const rect = card.getBoundingClientRect();
+          const px = (event.clientX - rect.left) / rect.width - 0.5;
+          const py = (event.clientY - rect.top) / rect.height - 0.5;
+          toRotateY(px * 9);
+          toRotateX(-py * 9);
+        };
+        const handleLeave = () => {
+          toRotateX(0);
+          toRotateY(0);
+        };
+
+        card.addEventListener("mousemove", handleMove, { passive: true });
+        card.addEventListener("mouseleave", handleLeave);
+        return () => {
+          card.removeEventListener("mousemove", handleMove);
+          card.removeEventListener("mouseleave", handleLeave);
+        };
+      });
+    },
+    { scope: ref }
+  );
 
   return (
-    <motion.div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={
-        shouldReduceMotion
-          ? undefined
-          : {
-              rotateX: springRotateX,
-              rotateY: springRotateY,
-              transformPerspective: 900,
-            }
-      }
+    <div
+      ref={ref}
       className="rounded-[18px] border border-white/[0.07] bg-[linear-gradient(160deg,rgba(52,132,255,0.07),rgba(0,3,57,0.4))] px-6 py-8 backdrop-blur-sm light:border-[#000339]/10 light:bg-[linear-gradient(160deg,rgba(52,132,255,0.08),rgba(255,255,255,0.9))] light:shadow-[0_18px_46px_rgba(22,72,255,0.1)] sm:px-10"
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -98,7 +97,7 @@ export default function Testimonials() {
 
   return (
     <section id="company" className="relative isolate overflow-hidden bg-[#000339] px-6 pb-24 pt-24 text-white light:bg-[#f1f2f2] light:text-[#000339] sm:px-10">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_44%_40%_at_50%_30%,rgba(22,72,255,0.2),transparent_72%)] light:bg-[radial-gradient(ellipse_44%_40%_at_50%_30%,rgba(52,132,255,0.13),transparent_72%)]" />
+      <div className="glow-accent absolute inset-0 bg-[radial-gradient(ellipse_44%_40%_at_50%_30%,rgba(22,72,255,0.2),transparent_72%)] light:bg-[radial-gradient(ellipse_44%_40%_at_50%_30%,rgba(52,132,255,0.13),transparent_72%)]" />
 
       <div className="relative z-10 mx-auto max-w-[820px] text-center">
         <motion.div
@@ -107,9 +106,10 @@ export default function Testimonials() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff] light:text-[#1648ff]">
-            Success stories
-          </p>
+          <Eyebrow
+            text="Success stories"
+            className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff] light:text-[#1648ff]"
+          />
           <h2 className="mx-auto mt-3 max-w-[520px] text-[34px] font-semibold leading-[1.02] tracking-[-0.06em] sm:text-[44px]">
             Built for your business. Proven in the real world.
           </h2>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMotionValue, useReducedMotion, useSpring } from "framer-motion";
-import { useEffect, useState, type MouseEvent } from "react";
+import { useState, type MouseEvent } from "react";
 
 /**
  * Magnetic hover: translates an element slightly toward the cursor while it
@@ -14,11 +14,13 @@ export function useMagneticHover(strength = 0.3) {
   const springX = useSpring(x, { stiffness: 260, damping: 20, mass: 0.5 });
   const springY = useSpring(y, { stiffness: 260, damping: 20, mass: 0.5 });
   const shouldReduceMotion = useReducedMotion();
-  const [canHover, setCanHover] = useState(false);
-
-  useEffect(() => {
-    setCanHover(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
-  }, []);
+  // Only read in event handlers (never in render output), so lazy init is
+  // hydration-safe and avoids a setState-in-effect.
+  const [canHover] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  );
 
   const onMouseMove = (event: MouseEvent<HTMLElement>) => {
     if (!canHover || shouldReduceMotion) return;

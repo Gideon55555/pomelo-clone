@@ -19,12 +19,14 @@ export function useCountUp<T extends HTMLElement = HTMLElement>(
 
   useEffect(() => {
     if (!isInView) return;
-    if (shouldReduceMotion) {
-      setValue(target);
-      return;
-    }
 
     let frame: number;
+
+    if (shouldReduceMotion) {
+      frame = requestAnimationFrame(() => setValue(target));
+      return () => cancelAnimationFrame(frame);
+    }
+
     const start = performance.now();
 
     const tick = (now: number) => {

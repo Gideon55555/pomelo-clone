@@ -11,6 +11,7 @@ import {
   Smartphone,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import Eyebrow from "@/components/common/Eyebrow";
 
 const partners = [
   { name: "NORTH", mark: "◈" },
@@ -55,7 +56,7 @@ export default function UseCases() {
       id="use-cases"
       className="relative isolate min-h-[720px] overflow-hidden bg-[#000339] px-6 pb-24 pt-20 text-white light:bg-[#f1f2f2] light:text-[#000339] sm:px-10 sm:pt-24"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_48%_44%_at_50%_77%,rgba(22,72,255,0.3),transparent_72%)] light:bg-[radial-gradient(ellipse_48%_44%_at_50%_77%,rgba(52,132,255,0.16),transparent_72%)]" />
+      <div className="glow-accent absolute inset-0 bg-[radial-gradient(ellipse_48%_44%_at_50%_77%,rgba(22,72,255,0.3),transparent_72%)] light:bg-[radial-gradient(ellipse_48%_44%_at_50%_77%,rgba(52,132,255,0.16),transparent_72%)]" />
       <div className="absolute inset-x-0 bottom-0 h-[58%] bg-[linear-gradient(90deg,rgba(52,132,255,0.07)_1px,transparent_1px),linear-gradient(rgba(52,132,255,0.06)_1px,transparent_1px)] [background-size:68px_68px] [mask-image:linear-gradient(to_bottom,transparent,black)]" />
       <div className="absolute -bottom-32 left-[20%] h-80 w-80 rounded-full bg-[#1648ff]/20 blur-[115px]" />
       <div className="absolute -bottom-28 right-[20%] h-72 w-72 rounded-full bg-[#3484ff]/20 blur-[100px]" />
@@ -87,14 +88,15 @@ export default function UseCases() {
 
         <motion.div
           className="mt-28 text-center sm:mt-32"
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[#80b4ff] light:text-[#1648ff]">
-            What we build
-          </p>
+          <Eyebrow
+            text="What we build"
+            className="text-[11px] font-medium uppercase tracking-[0.28em] text-[#80b4ff] light:text-[#1648ff]"
+          />
           <h2 className="mx-auto mt-3 max-w-[620px] text-[43px] font-semibold leading-[0.98] tracking-[-0.065em] sm:text-[58px]">
             Digital products,
             <br />

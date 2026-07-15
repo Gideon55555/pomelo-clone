@@ -92,7 +92,9 @@ function TypingBlock({
         const delay = charCount === 0 ? startDelay : charDelay + jitter;
         timer = setTimeout(() => setCharCount((count) => count + 1), delay);
       } else {
-        setPhase("holding");
+        // Zero-delay timeout keeps the phase change async (no synchronous
+        // setState inside the effect body).
+        timer = setTimeout(() => setPhase("holding"), 0);
       }
     } else if (phase === "holding") {
       timer = setTimeout(() => setPhase("fading"), HOLD_MS);

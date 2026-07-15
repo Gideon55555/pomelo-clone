@@ -39,6 +39,83 @@ a {
 
 :root {
   --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --accent-hue: 225;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes border-spin {
+  to { --angle: 360deg; }
+}
+
+/* Hover system for service/capability/team cards:
+   3D lift + rotating conic border ring + cursor-origin glow. */
+.interactive-card {
+  position: relative;
+  transform: perspective(900px) translateZ(0) rotateX(0deg);
+  transition: transform 340ms var(--motion-ease), box-shadow 340ms var(--motion-ease);
+}
+
+.interactive-card:hover {
+  transform: perspective(900px) translateZ(12px) rotateX(2deg);
+  box-shadow: 0 22px 52px rgba(22, 72, 255, 0.26);
+}
+
+.interactive-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--angle),
+    rgba(52, 132, 255, 0) 0%,
+    rgba(128, 180, 255, 0.9) 18%,
+    rgba(22, 72, 255, 0.45) 32%,
+    rgba(52, 132, 255, 0) 50%,
+    rgba(128, 180, 255, 0.55) 72%,
+    rgba(52, 132, 255, 0) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 320ms var(--motion-ease);
+  pointer-events: none;
+}
+
+.interactive-card:hover::before {
+  opacity: 1;
+  animation: border-spin 3.2s linear infinite;
+}
+
+.interactive-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    240px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    rgba(52, 132, 255, 0.2),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 380ms var(--motion-ease);
+  pointer-events: none;
+}
+
+.interactive-card:hover::after {
+  opacity: 1;
+}
+
+/* Radial glow overlays subscribe to the scroll-driven accent hue drift. */
+.glow-accent {
+  filter: hue-rotate(calc((var(--accent-hue) - 225) * 1deg));
 }
 
 @keyframes orb-drift {

@@ -2,8 +2,12 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Cpu, Globe, SlidersHorizontal, Zap } from "lucide-react";
+import { useRef } from "react";
+import Eyebrow from "@/components/common/Eyebrow";
+import InteractiveCard from "@/components/common/InteractiveCard";
 import MagneticButton from "@/components/common/MagneticButton";
 import { useCountUp } from "@/hooks/useCountUp";
+import { useGridStagger } from "@/hooks/useGridStagger";
 
 function CountUpStat({
   value,
@@ -54,47 +58,51 @@ const capabilities = [
 
 export default function Capabilities() {
   const shouldReduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  useGridStagger(sectionRef);
 
   return (
-    <section id="expertise" className="relative isolate overflow-hidden bg-[#000339] px-6 pb-24 pt-24 text-white light:bg-[#f1f2f2] light:text-[#000339] sm:px-10">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_44%_at_50%_84%,rgba(22,72,255,0.26),transparent_74%)] light:bg-[radial-gradient(ellipse_50%_44%_at_50%_84%,rgba(52,132,255,0.15),transparent_74%)]" />
+    <section ref={sectionRef} id="expertise" className="relative isolate overflow-hidden bg-[#000339] px-6 pb-24 pt-24 text-white light:bg-[#f1f2f2] light:text-[#000339] sm:px-10">
+      <div className="glow-accent absolute inset-0 bg-[radial-gradient(ellipse_50%_44%_at_50%_84%,rgba(22,72,255,0.26),transparent_74%)] light:bg-[radial-gradient(ellipse_50%_44%_at_50%_84%,rgba(52,132,255,0.15),transparent_74%)]" />
 
       <div className="relative z-10 mx-auto max-w-[1050px]">
         <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
-          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 40, scale: 0.96 }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
           className="text-center"
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff] light:text-[#1648ff]">
-            Key capabilities
-          </p>
+          <Eyebrow
+            text="Key capabilities"
+            className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff] light:text-[#1648ff]"
+          />
           <h2 className="mx-auto mt-3 max-w-[540px] text-[43px] font-semibold leading-[0.98] tracking-[-0.065em] sm:text-[54px]">
             Technology built to scale
           </h2>
-          <p className="mx-auto mt-5 max-w-[480px] text-[13px] leading-relaxed text-white/70 light:text-[#000339]/70 sm:text-[15px]">
+          <motion.p
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 16, filter: "blur(4px)" }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="mx-auto mt-5 max-w-[480px] text-[13px] leading-relaxed text-white/70 light:text-[#000339]/70 sm:text-[15px]"
+          >
             Everything you need to build, run, and grow your digital product.
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {capabilities.map((capability, index) => (
-            <motion.article
+          {capabilities.map((capability) => (
+            <InteractiveCard
               key={capability.title}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-              whileHover={{ y: -7 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: index * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="group rounded-[14px] border border-white/[0.09] bg-[linear-gradient(160deg,rgba(52,132,255,0.1),rgba(0,3,57,0.55))] p-6 backdrop-blur-sm transition-[border-color,box-shadow] duration-300 hover:border-[#80b4ff]/60 hover:shadow-[0_18px_46px_rgba(22,72,255,0.3)] light:border-[#000339]/10 light:bg-[linear-gradient(160deg,rgba(52,132,255,0.09),rgba(255,255,255,0.9))] light:hover:border-[#1648ff]/45 light:hover:shadow-[0_18px_46px_rgba(22,72,255,0.16)]"
+              className="batch-card group rounded-[14px] border border-white/[0.09] bg-[linear-gradient(160deg,rgba(52,132,255,0.1),rgba(0,3,57,0.55))] p-6 backdrop-blur-sm light:border-[#000339]/10 light:bg-[linear-gradient(160deg,rgba(52,132,255,0.09),rgba(255,255,255,0.9))]"
             >
               <div className="grid h-9 w-9 place-items-center rounded-lg border border-[#3484ff]/40 bg-[#1648ff]/20 text-[#80b4ff] transition-transform duration-300 ease-out group-hover:-rotate-6 group-hover:scale-110 light:text-[#1648ff]">
                 <capability.icon className="h-4 w-4" strokeWidth={1.7} />
               </div>
               <h3 className="mt-4 text-[17px] font-semibold tracking-[-0.04em]">{capability.title}</h3>
               <p className="mt-2 text-[13px] leading-[1.55] text-white/70 light:text-[#000339]/70">{capability.description}</p>
-            </motion.article>
+            </InteractiveCard>
           ))}
         </div>
 
@@ -106,9 +114,10 @@ export default function Capabilities() {
           className="mt-16 grid items-center gap-10 lg:grid-cols-2"
         >
           <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff] light:text-[#1648ff]">
-              Dashboard & AI
-            </p>
+            <Eyebrow
+              text="Dashboard & AI"
+              className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff] light:text-[#1648ff]"
+            />
             <h3 className="mt-3 max-w-[400px] text-[26px] font-semibold leading-[1.08] tracking-[-0.05em] sm:text-[32px]">
               Full visibility of your product, powered by AI
             </h3>
