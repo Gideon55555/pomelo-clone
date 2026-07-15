@@ -37,29 +37,21 @@ export default function Navbar() {
 
   return (
     <header 
-      // Exactly top-0, left-0, right-0, z-9999, w-full, with 37px top padding
       className="
         fixed top-0 left-0 right-0 z-[9999] w-full 
-        pt-[37px] transition-transform duration-300 ease-in-out
+        pt-5 transition-transform duration-300 ease-in-out sm:pt-7
       "
       style={{
         transform: visible ? "translateY(0)" : "translateY(-140%)",
       }}
     >
-      {/* 
-        Inner container: max-w-[1226px], mx-auto, mt-0.
-        Heights render at exactly 79.5px via flex-content sizing.
-      */}
-      <div className="relative max-w-[1226px] mx-auto w-full">
-
-        {/* ================= MAIN NAVBAR CONTENT CONTAINER ================= */}
+      <div className="relative mx-auto w-[calc(100%-2.5rem)] max-w-[1160px]">
         <div
-          // Exactly px-[30px], height auto mapping to ~79.5px
-          className="w-full flex h-[79.5px] items-center justify-between px-[30px] max-lg:py-[13px] relative z-0"
+          className="relative z-0 flex h-[48px] w-full items-center justify-between px-4 sm:px-5"
           style={{
-            backgroundColor: "oklab(0.164275 0.00177746 -0.0442353 / 0.4)",
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
+            backgroundColor: "rgba(10, 10, 30, 0.44)",
+            backdropFilter: "blur(14px)",
+            WebkitBackdropFilter: "blur(14px)",
           }}
         >
           {/* Logo Section */}
@@ -80,19 +72,10 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* ================= BLUEPRINT STROKE CORNERS (RENDERED ON TOP) ================= */}
-        {/* LEFT VERTICAL LINE (Extends exactly 12px above and below) */}
-        <div className="absolute left-0 top-[-12px] bottom-[-12px] w-[1px] bg-white/[0.08] z-10 pointer-events-none" />
-
-        {/* RIGHT VERTICAL LINE (Extends exactly 12px above and below) */}
-        <div className="absolute right-0 top-[-12px] bottom-[-12px] w-[1px] bg-white/[0.08] z-10 pointer-events-none" />
-
-        {/* TOP HORIZONTAL STROKE (Overshoots exactly 16px past vertical edges) */}
-        <div className="absolute top-0 left-[-16px] right-[-16px] h-[1px] bg-white/[0.08] z-10 pointer-events-none" />
-
-        {/* BOTTOM HORIZONTAL STROKE (Overshoots exactly 16px past vertical edges) */}
-        <div className="absolute bottom-0 left-[-16px] right-[-16px] h-[1px] bg-white/[0.08] z-10 pointer-events-none" />
-
+        <div className="pointer-events-none absolute -bottom-3 -top-3 left-0 z-10 w-px bg-white/[0.08]" />
+        <div className="pointer-events-none absolute -bottom-3 -top-3 right-0 z-10 w-px bg-white/[0.08]" />
+        <div className="pointer-events-none absolute -left-4 -right-4 top-0 z-10 h-px bg-white/[0.08]" />
+        <div className="pointer-events-none absolute -left-4 -right-4 bottom-0 z-10 h-px bg-white/[0.08]" />
       </div>
     </header>
   );

@@ -8,14 +8,14 @@ export default function NavLinks() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   return (
-    <ul className="flex items-center gap-6 font-geist text-[14px] font-medium text-white/90">
+    <ul className="hidden items-center gap-3.5 text-[9px] font-medium tracking-[-0.025em] text-white/75 lg:flex">
       {NAV_LINKS.map((link) => {
         const isHovered = hoveredItem === link.title;
 
         return (
           <li
             key={link.title}
-            className="relative py-4"
+            className="relative py-3"
             onMouseEnter={() => setHoveredItem(link.title)}
             onMouseLeave={() => setHoveredItem(null)}
           >
@@ -25,7 +25,7 @@ export default function NavLinks() {
               {link.dropdown && (
                 <svg
                   className={`w-2.5 h-2.5 text-white/50 transition-transform duration-200 ${
-                    isHovered ? "rotate-180 text-[#E72B8A]" : ""
+                    isHovered ? "rotate-180 text-[#3484FF]" : ""
                   }`}
                   viewBox="0 0 10 6"
                   fill="none"
@@ -50,7 +50,7 @@ export default function NavLinks() {
                     absolute bottom-0 left-1/2 -translate-x-1/2 
                     w-[150px] h-[65px] 
                     bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] 
-                    from-[#E72B8A]/35 via-[#E72B8A]/5 to-transparent 
+                    from-[#3484FF]/35 via-[#3484FF]/5 to-transparent 
                     blur-[14px] mix-blend-screen
                   " 
                 />
@@ -60,8 +60,8 @@ export default function NavLinks() {
                   className="
                     absolute bottom-[-1px] left-1/2 -translate-x-1/2 
                     w-[70px] h-[2px] 
-                    bg-gradient-to-r from-transparent via-[#E72B8A] to-transparent
-                    shadow-[0_0_12px_#E72B8A]
+                    bg-gradient-to-r from-transparent via-[#3484FF] to-transparent
+                    shadow-[0_0_12px_#3484FF]
                   "
                 />
               </div>

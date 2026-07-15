@@ -2,60 +2,46 @@ import Container from "@/components/common/Container";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#070B1D] pt-40 pb-36 text-white">
-      {/* Background Glow */}
-      <div className="absolute left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-pink-500/15 blur-[180px]" />
+    <section className="relative isolate flex min-h-screen items-center overflow-hidden bg-[#000339] pb-12 pt-28 text-white sm:pt-32">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_42%_at_50%_57%,rgba(22,72,255,0.28),transparent_72%)]" />
+      <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(115,104,151,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(115,104,151,0.045)_1px,transparent_1px)] [background-size:82px_82px]" />
+      <div className="absolute left-[18%] top-[18%] h-px w-[42%] bg-gradient-to-r from-transparent via-[#1648ff]/45 to-transparent" />
+      <div className="absolute right-[16%] top-[21%] h-[1px] w-[25%] bg-gradient-to-r from-transparent to-[#3484ff]/30" />
 
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="h-full w-full bg-[radial-gradient(circle_at_center,transparent_0%,transparent_45%,#ffffff_46%,transparent_47%)] bg-[length:120px_120px]" />
-      </div>
+      <div className="pointer-events-none absolute left-[16%] top-[58%] hidden h-[118px] w-[118px] -rotate-[27deg] rounded-[13px] border border-[#3484ff]/60 bg-[linear-gradient(135deg,rgba(100,166,255,0.32),rgba(18,55,156,0.12))] shadow-[-10px_14px_35px_rgba(22,72,255,0.2)] lg:block" />
+      <div className="pointer-events-none absolute left-[19%] top-[55%] hidden h-[118px] w-[118px] -rotate-[27deg] rounded-[13px] bg-[#3484ff]/10 blur-sm lg:block" />
 
-      <Container>
-        <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center text-center">
+      <div className="pointer-events-none absolute right-[17%] top-[35%] hidden h-[100px] w-[138px] rotate-[29deg] rounded-[13px] border border-[#3484ff]/70 bg-[linear-gradient(135deg,rgba(130,185,255,0.34),rgba(22,72,255,0.17))] shadow-[0_14px_45px_rgba(22,72,255,0.2)] lg:block" />
+      <div className="pointer-events-none absolute right-[13%] top-[31%] hidden h-[100px] w-[138px] rotate-[29deg] rounded-[13px] bg-[#1648ff]/20 lg:block" />
 
-          {/* Badge */}
-          <span className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm text-gray-300 backdrop-blur">
+      <Container className="relative z-10">
+        <div className="mx-auto flex max-w-[660px] flex-col items-center text-center">
+          <span className="rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-1.5 text-[10px] font-medium tracking-[-0.02em] text-white/55 shadow-[0_4px_20px_rgba(0,0,0,0.16)] backdrop-blur-md sm:text-xs">
             Launch, scale up or future-proof your business
           </span>
 
-          {/* Heading */}
-          <h1 className="mt-10 text-6xl font-black leading-none tracking-tight md:text-7xl lg:text-[96px]">
+          <h1 className="mt-7 text-[46px] font-semibold leading-[0.96] tracking-[-0.065em] sm:mt-8 sm:text-[62px] lg:text-[68px]">
             Smart payments
             <br />
             infrastructure.
             <br />
-            <span className="bg-gradient-to-r from-pink-500 to-pink-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#1648ff] via-[#3484ff] to-[#80b4ff] bg-clip-text text-transparent">
               Zero friction.
             </span>
           </h1>
 
-          {/* Description */}
-          <p className="mt-8 max-w-3xl text-lg leading-8 text-gray-400">
-            Modern payment infrastructure built for fast-growing companies.
-            Launch, scale and automate your financial operations with one
-            powerful platform.
+          <p className="mt-6 max-w-[410px] text-[13px] font-medium leading-[1.45] tracking-[-0.025em] text-white/78 sm:text-[15px]">
+            A modular, API-first, cloud-native platform powered by
+            <br className="hidden sm:block" /> AI to launch, operate, and manage your card business.
           </p>
 
-          {/* Buttons */}
-          <div className="mt-12 flex flex-wrap justify-center gap-5">
-            <button className="rounded-md bg-pink-600 px-8 py-4 font-semibold transition hover:bg-pink-500">
+          <div className="mt-7">
+            <button className="rounded-[2px] bg-gradient-to-r from-[#1648ff] to-[#3484ff] px-5 py-2.5 text-[11px] font-medium text-white shadow-[0_6px_20px_rgba(22,72,255,0.32)] transition hover:brightness-110">
               Contact us
             </button>
-
-            <button className="rounded-md border border-white/20 px-8 py-4 transition hover:bg-white/10">
-              Learn More
-            </button>
           </div>
-
         </div>
       </Container>
-
-      {/* Decorative Card Right */}
-      <div className="absolute right-24 top-1/2 hidden h-64 w-64 rotate-[35deg] rounded-3xl border border-pink-500/40 bg-white/5 backdrop-blur-xl lg:block" />
-
-      {/* Decorative Card Left */}
-      <div className="absolute bottom-10 left-20 hidden h-44 w-44 -rotate-[25deg] rounded-3xl border border-pink-500/20 bg-white/5 backdrop-blur-xl lg:block" />
     </section>
   );
 }

@@ -2,11 +2,15 @@
 
 html {
   scroll-behavior: smooth;
+  background: #000339;
 }
 
 body {
-  background: #fafafa;
-  color: #111827;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background: #000339;
+  color: #fff;
 }
 
 * {
@@ -15,4 +19,9 @@ body {
 
 a {
   text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }

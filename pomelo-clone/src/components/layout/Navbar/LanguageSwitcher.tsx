@@ -5,15 +5,14 @@ export default function LanguageSwitcher() {
         flex
         items-center
         gap-1
-        bg-[#12162B]
-        hover:bg-[#1C203A]
+        bg-white/[0.035]
+        hover:bg-white/[0.08]
         text-white
-        px-2
-        py-1.5
-        font-geist
-        text-[13px]
-        font-semibold
-        rounded-sm
+        px-2.5
+        py-2
+        text-[10px]
+        font-medium
+        rounded-[2px]
         border-none
         outline-none
         transition-[color,background-color]
@@ -40,7 +39,7 @@ export default function LanguageSwitcher() {
       
       {/* Down Chevron */}
       <svg
-        className="w-2 h-2 text-[#E72B8A] ml-0.5"
+        className="w-2 h-2 text-[#3484FF] ml-0.5"
         viewBox="0 0 10 6"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
