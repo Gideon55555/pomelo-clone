@@ -20,7 +20,7 @@ export default function NavLinks() {
             onMouseLeave={() => setHoveredItem(null)}
           >
             {/* Main Link Element */}
-            <button className="relative z-20 flex items-center gap-1.5 hover:text-white transition-colors duration-150">
+            <button className="group relative z-20 flex items-center gap-1.5 transition-colors duration-300 hover:text-white">
               <span>{link.title}</span>
               {link.dropdown && (
                 <svg
@@ -39,6 +39,7 @@ export default function NavLinks() {
                   />
                 </svg>
               )}
+              <span className="absolute -bottom-1 left-1/2 h-px w-0 -translate-x-1/2 bg-[#3484FF] transition-all duration-300 group-hover:w-full" />
             </button>
 
             {/* ================= RADIAL BOTTOM-ANCHORED GLOW (Applies to all hovered items) ================= */}
@@ -81,7 +82,7 @@ export default function NavLinks() {
                     shadow-[0_20px_50px_rgba(0,0,0,0.5)]
                   "
                   style={{
-                    backgroundColor: "#0B0E1C",
+                    backgroundColor: "#000339",
                   }}
                 >
                   <ul className="flex flex-col gap-3.5">

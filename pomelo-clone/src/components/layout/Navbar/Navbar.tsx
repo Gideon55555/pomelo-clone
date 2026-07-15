@@ -49,7 +49,7 @@ export default function Navbar() {
         <div
           className="relative z-0 flex h-[48px] w-full items-center justify-between px-4 sm:px-5"
           style={{
-            backgroundColor: "rgba(10, 10, 30, 0.44)",
+            backgroundColor: "rgba(0, 3, 57, 0.72)",
             backdropFilter: "blur(14px)",
             WebkitBackdropFilter: "blur(14px)",
           }}

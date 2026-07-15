@@ -2,8 +2,8 @@ export default function NavButton() {
   return (
     <button
       className="
+        button-shimmer
         relative
-        overflow-hidden
         bg-gradient-to-r from-[#1648FF] to-[#3484FF]
         hover:brightness-115
         text-white
