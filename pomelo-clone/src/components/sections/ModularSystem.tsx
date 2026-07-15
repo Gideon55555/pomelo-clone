@@ -56,9 +56,9 @@ export default function ModularSystem() {
   useGridStagger(sectionRef);
 
   return (
-    <section ref={sectionRef} id="solutions" className="relative isolate overflow-hidden bg-[#000339] px-6 pb-24 pt-24 text-white light:bg-[#f1f2f2] light:text-[#000339] sm:px-10">
-      <div className="glow-accent absolute inset-0 bg-[radial-gradient(ellipse_46%_38%_at_50%_18%,rgba(22,72,255,0.22),transparent_74%)] light:bg-[radial-gradient(ellipse_46%_38%_at_50%_18%,rgba(52,132,255,0.14),transparent_74%)]" />
-      <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(52,132,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(52,132,255,0.04)_1px,transparent_1px)] [background-size:84px_84px]" />
+    <section ref={sectionRef} id="solutions" className="relative isolate overflow-hidden bg-[#0B2023] px-6 pb-24 pt-24 text-[#EEFEFC] light:bg-[#EEFEFC] light:text-[#0B2023] sm:px-10">
+      <div className="glow-accent absolute inset-0 bg-[radial-gradient(ellipse_46%_38%_at_50%_18%,rgba(0,79,76,0.22),transparent_74%)] light:bg-[radial-gradient(ellipse_46%_38%_at_50%_18%,rgba(26,243,220,0.14),transparent_74%)]" />
+      <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(26,243,220,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(26,243,220,0.04)_1px,transparent_1px)] [background-size:84px_84px]" />
 
       <div className="relative z-10 mx-auto max-w-[1050px]">
         <motion.div
@@ -70,7 +70,7 @@ export default function ModularSystem() {
         >
           <Eyebrow
             text="Modular services"
-            className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff] light:text-[#1648ff]"
+            className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#1AF3DC] light:text-[#004F4C]"
           />
           <h2 className="mt-3 text-[34px] font-semibold leading-[1.04] tracking-[-0.06em] sm:text-[44px]">
             A modular, end-to-end team to design, build, and scale your product.
@@ -80,7 +80,7 @@ export default function ModularSystem() {
             whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="mx-auto mt-5 max-w-[520px] text-[13px] leading-relaxed text-white/70 light:text-[#000339]/70 sm:text-[15px]"
+            className="mx-auto mt-5 max-w-[520px] text-[13px] leading-relaxed text-[#609395] light:text-[#0B2023]/70 sm:text-[15px]"
           >
             From strategy to launch and beyond, engage the capabilities you need — as a full product team or alongside your own.
           </motion.p>
@@ -90,26 +90,26 @@ export default function ModularSystem() {
           {modules.map((module) => (
             <InteractiveCard
               key={module.title}
-              className={`batch-card group flex flex-col rounded-[14px] border border-white/[0.09] bg-[linear-gradient(150deg,rgba(52,132,255,0.1),rgba(0,3,57,0.6))] p-6 backdrop-blur-sm light:border-[#000339]/10 light:bg-[linear-gradient(150deg,rgba(52,132,255,0.09),rgba(255,255,255,0.9))] ${module.span}`}
+              className={`batch-card group flex flex-col rounded-[14px] border border-white/[0.09] bg-[linear-gradient(150deg,rgba(26,243,220,0.1),rgba(11,32,35,0.6))] p-6 backdrop-blur-sm light:border-[#0B2023]/10 light:bg-[linear-gradient(150deg,rgba(26,243,220,0.09),rgba(255,255,255,0.9))] ${module.span}`}
             >
               <div className="flex items-center justify-between">
-                <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-[#80b4ff]/90 light:text-[#1648ff]/80">
+                <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-[#1AF3DC]/90 light:text-[#004F4C]/80">
                   {module.eyebrow}
                 </p>
-                <span className="grid h-8 w-8 place-items-center rounded-lg border border-[#3484ff]/35 bg-[#1648ff]/15 text-[#80b4ff] transition-transform duration-300 ease-out group-hover:-rotate-6 group-hover:scale-110 light:text-[#1648ff]">
+                <span className="grid h-8 w-8 place-items-center rounded-lg border border-[#1AF3DC]/35 bg-[#004F4C]/15 text-[#1AF3DC] transition-transform duration-300 ease-out group-hover:-rotate-6 group-hover:scale-110 light:text-[#004F4C]">
                   <module.icon className="h-3.5 w-3.5" strokeWidth={1.7} />
                 </span>
               </div>
               <h3 className="mt-2 text-[19px] font-semibold tracking-[-0.045em]">{module.title}</h3>
               <ul className="mt-4 flex flex-col gap-2">
                 {module.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-[13px] text-white/70 light:text-[#000339]/70">
-                    <span className="h-1 w-1 rounded-full bg-[#3484ff]" />
+                  <li key={item} className="flex items-center gap-2 text-[13px] text-[#609395] light:text-[#0B2023]/70">
+                    <span className="h-1 w-1 rounded-full bg-[#1AF3DC]" />
                     {item}
                   </li>
                 ))}
               </ul>
-              <span className="mt-auto pt-5 text-[13px] font-medium text-[#80b4ff] transition-colors group-hover:text-white light:text-[#1648ff] light:group-hover:text-[#000339]">
+              <span className="mt-auto pt-5 text-[13px] font-medium text-[#1AF3DC] transition-colors group-hover:text-[#EEFEFC] light:text-[#004F4C] light:group-hover:text-[#0B2023]">
                 {module.link} →
               </span>
             </InteractiveCard>

@@ -7,10 +7,10 @@ export default function LanguageSwitcher() {
         gap-1
         bg-white/[0.035]
         hover:bg-white/[0.08]
-        light:bg-[#000339]/[0.05]
-        light:hover:bg-[#000339]/10
-        light:text-[#000339]
-        text-white
+        light:bg-[#0B2023]/[0.05]
+        light:hover:bg-[#0B2023]/10
+        light:text-[#0B2023]
+        text-[#EEFEFC]
         px-2.5
         py-2
         text-[12px]
@@ -25,7 +25,7 @@ export default function LanguageSwitcher() {
     >
       {/* Globe Icon */}
       <svg
-        className="w-3.5 h-3.5 text-white/80"
+        className="w-3.5 h-3.5 text-[#EEFEFC]/80"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -42,7 +42,7 @@ export default function LanguageSwitcher() {
       
       {/* Down Chevron */}
       <svg
-        className="w-2 h-2 text-[#3484FF] ml-0.5"
+        className="w-2 h-2 text-[#1AF3DC] ml-0.5"
         viewBox="0 0 10 6"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

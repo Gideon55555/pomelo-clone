@@ -114,13 +114,13 @@ function TypingBlock({
   return (
     <pre
       style={{ fontFamily: "var(--font-jetbrains), ui-monospace, monospace" }}
-      className={`absolute whitespace-pre text-[10px] leading-[1.7] text-[#9ac8ff] light:text-[#1648ff] transition-opacity duration-700 ${
+      className={`absolute whitespace-pre text-[10px] leading-[1.7] text-[#609395] light:text-[#004F4C] transition-opacity duration-700 ${
         phase === "fading" ? "opacity-0" : "opacity-100"
       } ${className}`}
     >
       {visibleText}
       {!reduced && phase === "typing" && charCount > 0 && (
-        <span className="code-cursor text-[#80b4ff]">▊</span>
+        <span className="code-cursor text-[#1AF3DC]">▊</span>
       )}
     </pre>
   );

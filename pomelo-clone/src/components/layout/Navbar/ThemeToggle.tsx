@@ -35,7 +35,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={theme === "dark" ? "Switch to day mode" : "Switch to dark mode"}
-      className="grid h-8 w-8 place-items-center rounded-sm bg-white/[0.035] text-white/80 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white light:bg-[#000339]/[0.05] light:text-[#000339]/80 light:hover:bg-[#000339]/10 light:hover:text-[#000339]"
+      className="grid h-8 w-8 place-items-center rounded-sm bg-white/[0.035] text-[#EEFEFC]/80 transition-colors duration-150 hover:bg-white/[0.08] hover:text-[#EEFEFC] light:bg-[#0B2023]/[0.05] light:text-[#0B2023]/80 light:hover:bg-[#0B2023]/10 light:hover:text-[#0B2023]"
     >
       {theme === "dark" ? (
         <Sun className="h-4 w-4" strokeWidth={1.8} />

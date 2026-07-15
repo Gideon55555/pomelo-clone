@@ -91,16 +91,16 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate flex min-h-screen items-center overflow-hidden bg-[#000339] pb-12 pt-28 text-white light:bg-[#f1f2f2] light:text-[#000339] sm:pt-32"
+      className="relative isolate flex min-h-screen items-center overflow-hidden bg-[#0B2023] pb-12 pt-28 text-[#EEFEFC] light:bg-[#EEFEFC] light:text-[#0B2023] sm:pt-32"
     >
       <div ref={orbLayerRef} aria-hidden="true" className="absolute inset-0">
-        <div className="hero-orb glow-accent absolute inset-0 bg-[radial-gradient(ellipse_50%_42%_at_50%_57%,rgba(22,72,255,0.28),transparent_72%)] light:bg-[radial-gradient(ellipse_50%_42%_at_50%_57%,rgba(52,132,255,0.18),transparent_72%)]" />
+        <div className="hero-orb glow-accent absolute inset-0 bg-[radial-gradient(ellipse_50%_42%_at_50%_57%,rgba(0,79,76,0.28),transparent_72%)] light:bg-[radial-gradient(ellipse_50%_42%_at_50%_57%,rgba(26,243,220,0.18),transparent_72%)]" />
       </div>
       <div ref={gridLayerRef} aria-hidden="true" className="absolute -inset-6">
-        <div className="hero-grid absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(52,132,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(52,132,255,0.045)_1px,transparent_1px)] [background-size:82px_82px] light:[background-image:linear-gradient(rgba(22,72,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(22,72,255,0.08)_1px,transparent_1px)]" />
+        <div className="hero-grid absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(26,243,220,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(26,243,220,0.045)_1px,transparent_1px)] [background-size:82px_82px] light:[background-image:linear-gradient(rgba(0,79,76,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,79,76,0.08)_1px,transparent_1px)]" />
       </div>
-      <div className="absolute left-[18%] top-[18%] h-px w-[42%] bg-gradient-to-r from-transparent via-[#1648ff]/45 to-transparent" />
-      <div className="absolute right-[16%] top-[21%] h-[1px] w-[25%] bg-gradient-to-r from-transparent to-[#3484ff]/30" />
+      <div className="absolute left-[18%] top-[18%] h-px w-[42%] bg-gradient-to-r from-transparent via-[#004F4C]/45 to-transparent" />
+      <div className="absolute right-[16%] top-[21%] h-[1px] w-[25%] bg-gradient-to-r from-transparent to-[#1AF3DC]/30" />
 
       <CodeRain />
       <ScrollCube />
@@ -114,21 +114,21 @@ export default function Hero() {
               : { y: -12, rotate: -6, scale: 1.06 }
           }
           transition={{ type: "spring", stiffness: 220, damping: 16 }}
-          className="pointer-events-auto absolute left-[14%] top-[56%] hidden w-[190px] -rotate-[14deg] cursor-pointer overflow-hidden rounded-[12px] border border-[#3484ff]/60 bg-[linear-gradient(135deg,rgba(22,72,255,0.24),rgba(0,3,57,0.7))] shadow-[-10px_14px_35px_rgba(22,72,255,0.2)] backdrop-blur-sm transition-shadow duration-300 hover:border-[#80b4ff]/80 hover:shadow-[-12px_20px_50px_rgba(22,72,255,0.4)] light:border-[#1648ff]/30 light:bg-[linear-gradient(135deg,rgba(52,132,255,0.14),rgba(255,255,255,0.85))] light:shadow-[-10px_14px_35px_rgba(22,72,255,0.14)] lg:block"
+          className="pointer-events-auto absolute left-[14%] top-[56%] hidden w-[190px] -rotate-[14deg] cursor-pointer overflow-hidden rounded-[12px] border border-[#1AF3DC]/60 bg-[linear-gradient(135deg,rgba(0,79,76,0.24),rgba(11,32,35,0.7))] shadow-[-10px_14px_35px_rgba(0,79,76,0.2)] backdrop-blur-sm transition-shadow duration-300 hover:border-[#1AF3DC]/80 hover:shadow-[-12px_20px_50px_rgba(0,79,76,0.4)] light:border-[#004F4C]/30 light:bg-[linear-gradient(135deg,rgba(26,243,220,0.14),rgba(255,255,255,0.85))] light:shadow-[-10px_14px_35px_rgba(0,79,76,0.14)] lg:block"
         >
-          <div className="flex items-center gap-1.5 border-b border-white/[0.08] bg-[#000339]/60 px-3 py-2 light:border-[#000339]/10 light:bg-white/70">
-            <span className="h-2 w-2 rounded-full bg-[#1648ff]/80" />
-            <span className="h-2 w-2 rounded-full bg-[#3484ff]/70" />
-            <span className="h-2 w-2 rounded-full bg-[#80b4ff]/60" />
+          <div className="flex items-center gap-1.5 border-b border-white/[0.08] bg-[#0B2023]/60 px-3 py-2 light:border-[#0B2023]/10 light:bg-white/70">
+            <span className="h-2 w-2 rounded-full bg-[#004F4C]/80" />
+            <span className="h-2 w-2 rounded-full bg-[#1AF3DC]/70" />
+            <span className="h-2 w-2 rounded-full bg-[#1AF3DC]/60" />
           </div>
           <div className="space-y-2 px-3 py-3">
-            <div className="h-1.5 w-[70%] rounded-full bg-[#3484ff]/60" />
-            <div className="ml-4 h-1.5 w-[52%] rounded-full bg-[#80b4ff]/40" />
-            <div className="ml-4 h-1.5 w-[62%] rounded-full bg-white/20 light:bg-[#000339]/20" />
-            <div className="h-1.5 w-[38%] rounded-full bg-[#3484ff]/50" />
+            <div className="h-1.5 w-[70%] rounded-full bg-[#1AF3DC]/60" />
+            <div className="ml-4 h-1.5 w-[52%] rounded-full bg-[#1AF3DC]/40" />
+            <div className="ml-4 h-1.5 w-[62%] rounded-full bg-white/20 light:bg-[#0B2023]/20" />
+            <div className="h-1.5 w-[38%] rounded-full bg-[#1AF3DC]/50" />
           </div>
         </motion.div>
-        <div className="absolute left-[17%] top-[53%] hidden h-[130px] w-[190px] -rotate-[14deg] rounded-[12px] bg-[#3484ff]/10 blur-sm lg:block" />
+        <div className="absolute left-[17%] top-[53%] hidden h-[130px] w-[190px] -rotate-[14deg] rounded-[12px] bg-[#1AF3DC]/10 blur-sm lg:block" />
 
         <motion.div
           data-cursor="hover"
@@ -138,25 +138,25 @@ export default function Hero() {
               : { y: -12, rotate: 5, scale: 1.06 }
           }
           transition={{ type: "spring", stiffness: 220, damping: 16 }}
-          className="pointer-events-auto absolute right-[13%] top-[31%] hidden w-[210px] rotate-[13deg] cursor-pointer overflow-hidden rounded-[12px] border border-[#3484ff]/70 bg-[linear-gradient(135deg,rgba(22,72,255,0.28),rgba(0,3,57,0.72))] shadow-[0_14px_45px_rgba(22,72,255,0.2)] backdrop-blur-sm transition-shadow duration-300 hover:border-[#80b4ff]/80 hover:shadow-[0_20px_55px_rgba(22,72,255,0.42)] light:border-[#1648ff]/30 light:bg-[linear-gradient(135deg,rgba(52,132,255,0.16),rgba(255,255,255,0.88))] light:shadow-[0_14px_45px_rgba(22,72,255,0.15)] lg:block"
+          className="pointer-events-auto absolute right-[13%] top-[31%] hidden w-[210px] rotate-[13deg] cursor-pointer overflow-hidden rounded-[12px] border border-[#1AF3DC]/70 bg-[linear-gradient(135deg,rgba(0,79,76,0.28),rgba(11,32,35,0.72))] shadow-[0_14px_45px_rgba(0,79,76,0.2)] backdrop-blur-sm transition-shadow duration-300 hover:border-[#1AF3DC]/80 hover:shadow-[0_20px_55px_rgba(0,79,76,0.42)] light:border-[#004F4C]/30 light:bg-[linear-gradient(135deg,rgba(26,243,220,0.16),rgba(255,255,255,0.88))] light:shadow-[0_14px_45px_rgba(0,79,76,0.15)] lg:block"
         >
-          <div className="flex items-center gap-2 border-b border-white/[0.08] bg-[#000339]/60 px-3 py-2 light:border-[#000339]/10 light:bg-white/70">
-            <span className="font-mono text-[10px] text-[#80b4ff] light:text-[#1648ff]">❯_</span>
-            <span className="font-mono text-[9px] text-white/40 light:text-[#000339]/50">qua — deploy</span>
+          <div className="flex items-center gap-2 border-b border-white/[0.08] bg-[#0B2023]/60 px-3 py-2 light:border-[#0B2023]/10 light:bg-white/70">
+            <span className="font-mono text-[10px] text-[#1AF3DC] light:text-[#004F4C]">❯_</span>
+            <span className="font-mono text-[9px] text-[#609395] light:text-[#0B2023]/50">qua — deploy</span>
           </div>
-          <div className="space-y-1.5 px-3 py-2.5 font-mono text-[9px] leading-relaxed text-white/55 light:text-[#000339]/60">
-            <p><span className="text-[#80b4ff] light:text-[#1648ff]">❯</span> qua build --release</p>
-            <p className="text-[#9ac8ff] light:text-[#1648ff]/80">✓ compiled in 1.2s</p>
-            <p className="text-[#9ac8ff] light:text-[#1648ff]/80">✓ deployed to production</p>
+          <div className="space-y-1.5 px-3 py-2.5 font-mono text-[9px] leading-relaxed text-[#609395] light:text-[#0B2023]/60">
+            <p><span className="text-[#1AF3DC] light:text-[#004F4C]">❯</span> qua build --release</p>
+            <p className="text-[#609395] light:text-[#004F4C]/80">✓ compiled in 1.2s</p>
+            <p className="text-[#609395] light:text-[#004F4C]/80">✓ deployed to production</p>
           </div>
         </motion.div>
-        <div className="absolute right-[10%] top-[27%] hidden h-[110px] w-[210px] rotate-[13deg] rounded-[12px] bg-[#1648ff]/20 lg:block" />
+        <div className="absolute right-[10%] top-[27%] hidden h-[110px] w-[210px] rotate-[13deg] rounded-[12px] bg-[#004F4C]/20 lg:block" />
       </div>
 
       <Container className="relative z-10">
         <div className="mx-auto flex max-w-[660px] flex-col items-center text-center">
           <Reveal delay={0.05} blur>
-            <span className="rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-1.5 text-[12px] font-medium tracking-[-0.02em] text-white/70 shadow-[0_4px_20px_rgba(0,0,0,0.16)] backdrop-blur-md light:border-[#000339]/10 light:bg-white/60 light:text-[#000339]/75 light:shadow-[0_4px_20px_rgba(0,3,57,0.08)] sm:text-sm">
+            <span className="rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-1.5 text-[12px] font-medium tracking-[-0.02em] text-[#609395] shadow-[0_4px_20px_rgba(0,0,0,0.16)] backdrop-blur-md light:border-[#0B2023]/10 light:bg-white/60 light:text-[#0B2023]/75 light:shadow-[0_4px_20px_rgba(11,32,35,0.08)] sm:text-sm">
               Software development company
             </span>
           </Reveal>
@@ -167,12 +167,12 @@ export default function Hero() {
             <SplitText
               text="that work"
               charClassName="hero-char-accent"
-              wordClassName="bg-gradient-to-r from-[#1648ff] via-[#3484ff] to-[#80b4ff] bg-clip-text text-transparent"
+              wordClassName="bg-gradient-to-r from-[#004F4C] via-[#1AF3DC] to-[#1AF3DC] bg-clip-text text-transparent"
             />
           </h1>
 
           <Reveal delay={0.45} blur>
-            <p className="mt-6 max-w-[560px] text-[14px] font-medium leading-[1.5] tracking-[-0.025em] text-white/80 light:text-[#000339]/75 sm:text-[16px]">
+            <p className="mt-6 max-w-[560px] text-[14px] font-medium leading-[1.5] tracking-[-0.025em] text-[#EEFEFC]/80 light:text-[#0B2023]/75 sm:text-[16px]">
               Qua is a software development company that provides digital technology services. From mobile and web development to custom software solutions, we&apos;re dedicated to delivering innovative, high-quality solutions tailored to your unique needs.
             </p>
           </Reveal>
@@ -181,7 +181,7 @@ export default function Hero() {
             <div className="mt-7">
               <MagneticButton
                 pulse
-                className="rounded-[2px] bg-gradient-to-r from-[#1648ff] to-[#3484ff] px-6 py-3 text-[14px] font-medium text-white shadow-[0_6px_20px_rgba(22,72,255,0.32)]"
+                className="rounded-[2px] bg-gradient-to-r from-[#004F4C] to-[#1AF3DC] px-6 py-3 text-[14px] font-medium text-[#EEFEFC] shadow-[0_6px_20px_rgba(0,79,76,0.32)]"
               >
                 Contact us
               </MagneticButton>

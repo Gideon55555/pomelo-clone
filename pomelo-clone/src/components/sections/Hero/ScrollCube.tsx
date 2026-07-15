@@ -55,7 +55,7 @@ export default function ScrollCube() {
           <div
             key={transform}
             style={{ transform }}
-            className="absolute inset-0 rounded-[3px] border border-[#3484ff]/35 bg-[#3484ff]/[0.03] light:border-[#1648ff]/25"
+            className="absolute inset-0 rounded-[3px] border border-[#1AF3DC]/35 bg-[#1AF3DC]/[0.03] light:border-[#004F4C]/25"
           />
         ))}
       </div>

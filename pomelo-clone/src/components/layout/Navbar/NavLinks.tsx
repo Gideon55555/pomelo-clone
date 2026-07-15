@@ -17,7 +17,7 @@ export default function NavLinks() {
   };
 
   return (
-    <ul className="hidden items-center gap-5 text-[13px] font-medium tracking-[-0.025em] text-white/80 light:text-[#000339]/80 lg:flex">
+    <ul className="hidden items-center gap-5 text-[13px] font-medium tracking-[-0.025em] text-[#EEFEFC]/80 light:text-[#0B2023]/80 lg:flex">
       {NAV_LINKS.map((link) => {
         const isHovered = hoveredItem === link.title;
 
@@ -35,12 +35,12 @@ export default function NavLinks() {
             }}
           >
             {/* Main Link Element */}
-            <button className="group relative z-20 flex items-center gap-1.5 transition-colors duration-300 hover:text-white light:hover:text-[#000339]">
+            <button className="group relative z-20 flex items-center gap-1.5 transition-colors duration-300 hover:text-[#EEFEFC] light:hover:text-[#0B2023]">
               <span>{link.title}</span>
               {link.dropdown && (
                 <svg
-                  className={`w-2.5 h-2.5 text-white/50 transition-transform duration-200 ${
-                    isHovered ? "rotate-180 text-[#3484FF]" : ""
+                  className={`w-2.5 h-2.5 text-[#609395] transition-transform duration-200 ${
+                    isHovered ? "rotate-180 text-[#1AF3DC]" : ""
                   }`}
                   viewBox="0 0 10 6"
                   fill="none"
@@ -59,7 +59,7 @@ export default function NavLinks() {
                 initial={false}
                 animate={{ scaleX: isHovered ? 1 : 0 }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className={`absolute -bottom-1 left-0 right-0 h-px bg-[#3484FF] ${
+                className={`absolute -bottom-1 left-0 right-0 h-px bg-[#1AF3DC] ${
                   underlineOrigin === "left" ? "origin-left" : "origin-right"
                 }`}
               />
@@ -74,7 +74,7 @@ export default function NavLinks() {
                     absolute bottom-0 left-1/2 -translate-x-1/2 
                     w-[150px] h-[65px] 
                     bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] 
-                    from-[#3484FF]/35 via-[#3484FF]/5 to-transparent 
+                    from-[#1AF3DC]/35 via-[#1AF3DC]/5 to-transparent 
                     blur-[14px] mix-blend-screen
                   " 
                 />
@@ -84,8 +84,8 @@ export default function NavLinks() {
                   className="
                     absolute bottom-[-1px] left-1/2 -translate-x-1/2 
                     w-[70px] h-[2px] 
-                    bg-gradient-to-r from-transparent via-[#3484FF] to-transparent
-                    shadow-[0_0_12px_#3484FF]
+                    bg-gradient-to-r from-transparent via-[#1AF3DC] to-transparent
+                    shadow-[0_0_12px_#1AF3DC]
                   "
                 />
               </div>
@@ -101,9 +101,9 @@ export default function NavLinks() {
               >
                 <div
                   className="
-                    w-full rounded-xl border border-white/10 bg-[#000339] p-5
+                    w-full rounded-xl border border-white/10 bg-[#0B2023] p-5
                     shadow-[0_20px_50px_rgba(0,0,0,0.5)]
-                    light:border-[#000339]/10 light:bg-white light:shadow-[0_20px_50px_rgba(0,3,57,0.15)]
+                    light:border-[#0B2023]/10 light:bg-white light:shadow-[0_20px_50px_rgba(11,32,35,0.15)]
                   "
                 >
                   <ul className="flex flex-col gap-3.5">
@@ -112,9 +112,9 @@ export default function NavLinks() {
                         <a
                           href={link.href}
                           className="
-                            block font-geist text-[13px] font-semibold text-white/60 
-                            hover:text-white transition-colors duration-150
-                            light:text-[#000339]/60 light:hover:text-[#000339]
+                            block font-geist text-[13px] font-semibold text-[#609395] 
+                            hover:text-[#EEFEFC] transition-colors duration-150
+                            light:text-[#0B2023]/60 light:hover:text-[#0B2023]
                           "
                         >
                           {item}

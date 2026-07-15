@@ -4,9 +4,9 @@ export default function NavButton() {
       className="
         button-shimmer
         relative
-        bg-gradient-to-r from-[#1648FF] to-[#3484FF]
+        bg-gradient-to-r from-[#004F4C] to-[#1AF3DC]
         hover:brightness-115
-        text-white
+        text-[#EEFEFC]
         font-geist
         text-[13px]
         font-medium
@@ -14,7 +14,7 @@ export default function NavButton() {
         rounded-[4px]
         transition-all
         duration-200
-        hover:shadow-[0_0_20px_rgba(22,72,255,0.35)]
+        hover:shadow-[0_0_20px_rgba(0,79,76,0.35)]
         active:scale-[0.98]
       "
     >

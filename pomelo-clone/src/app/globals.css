@@ -4,24 +4,24 @@
 
 html {
   scroll-behavior: smooth;
-  background: #000339;
+  background: #0B2023;
 }
 
 body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
-  background: #000339;
-  color: #fff;
+  background: #0B2023;
+  color: #EEFEFC;
 }
 
 html[data-theme="light"] {
-  background: #f1f2f2;
+  background: #EEFEFC;
 }
 
 html[data-theme="light"] body {
-  background: #f1f2f2;
-  color: #000339;
+  background: #EEFEFC;
+  color: #0B2023;
 }
 
 * {
@@ -39,7 +39,11 @@ a {
 
 :root {
   --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --accent-hue: 225;
+  --accent-hue: 174;
+  --use-cases-bg: #0B2023;
+  --use-cases-glow-core: rgba(26, 243, 220, 0.38);
+  --use-cases-glow-mid: rgba(0, 79, 76, 0.56);
+  --use-cases-eyebrow: #1AF3DC;
 }
 
 @property --angle {
@@ -62,7 +66,7 @@ a {
 
 .interactive-card:hover {
   transform: perspective(900px) translateZ(12px) rotateX(2deg);
-  box-shadow: 0 22px 52px rgba(22, 72, 255, 0.26);
+  box-shadow: 0 22px 52px rgba(0, 79, 76, 0.26);
 }
 
 .interactive-card::before {
@@ -74,12 +78,12 @@ a {
   padding: 1px;
   background: conic-gradient(
     from var(--angle),
-    rgba(52, 132, 255, 0) 0%,
-    rgba(128, 180, 255, 0.9) 18%,
-    rgba(22, 72, 255, 0.45) 32%,
-    rgba(52, 132, 255, 0) 50%,
-    rgba(128, 180, 255, 0.55) 72%,
-    rgba(52, 132, 255, 0) 100%
+    rgba(26, 243, 220, 0) 0%,
+    rgba(26, 243, 220, 0.9) 18%,
+    rgba(0, 79, 76, 0.45) 32%,
+    rgba(26, 243, 220, 0) 50%,
+    rgba(26, 243, 220, 0.55) 72%,
+    rgba(26, 243, 220, 0) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -101,7 +105,7 @@ a {
   border-radius: inherit;
   background: radial-gradient(
     240px circle at var(--glow-x, 50%) var(--glow-y, 50%),
-    rgba(52, 132, 255, 0.2),
+    rgba(26, 243, 220, 0.2),
     transparent 70%
   );
   opacity: 0;
@@ -115,7 +119,7 @@ a {
 
 /* Radial glow overlays subscribe to the scroll-driven accent hue drift. */
 .glow-accent {
-  filter: hue-rotate(calc((var(--accent-hue) - 225) * 1deg));
+  filter: hue-rotate(calc((var(--accent-hue) - 174) * 1deg));
 }
 
 @keyframes orb-drift {
@@ -129,8 +133,8 @@ a {
 }
 
 @keyframes breathe {
-  0%, 100% { filter: drop-shadow(0 10px 20px rgba(22, 72, 255, 0.18)); }
-  50% { filter: drop-shadow(0 16px 34px rgba(52, 132, 255, 0.56)); }
+  0%, 100% { filter: drop-shadow(0 10px 20px rgba(0, 79, 76, 0.18)); }
+  50% { filter: drop-shadow(0 16px 34px rgba(26, 243, 220, 0.56)); }
 }
 
 .hero-orb {
@@ -160,7 +164,7 @@ a {
 
 .button-shimmer:hover {
   transform: translateY(-2px) scale(1.035);
-  box-shadow: 0 12px 30px rgba(22, 72, 255, 0.52);
+  box-shadow: 0 12px 30px rgba(0, 79, 76, 0.52);
   filter: saturate(1.15);
 }
 
