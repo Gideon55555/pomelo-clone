@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
 html {
   scroll-behavior: smooth;
   background: #000339;
@@ -11,6 +13,15 @@ body {
   overflow-x: hidden;
   background: #000339;
   color: #fff;
+}
+
+html[data-theme="light"] {
+  background: #f1f2f2;
+}
+
+html[data-theme="light"] body {
+  background: #f1f2f2;
+  color: #000339;
 }
 
 * {

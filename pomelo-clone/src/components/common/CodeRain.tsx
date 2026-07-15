@@ -112,7 +112,7 @@ function TypingBlock({
   return (
     <pre
       style={{ fontFamily: "var(--font-jetbrains), ui-monospace, monospace" }}
-      className={`absolute whitespace-pre text-[10px] leading-[1.7] text-[#9ac8ff] transition-opacity duration-700 ${
+      className={`absolute whitespace-pre text-[10px] leading-[1.7] text-[#9ac8ff] light:text-[#1648ff] transition-opacity duration-700 ${
         phase === "fading" ? "opacity-0" : "opacity-100"
       } ${className}`}
     >
@@ -134,7 +134,7 @@ export default function CodeRain() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-0 select-none overflow-hidden opacity-[0.11]"
+      className="pointer-events-none absolute inset-0 z-0 select-none overflow-hidden opacity-[0.11] light:opacity-[0.18]"
     >
       <TypingBlock startIndex={0} charDelay={58} startDelay={300} reduced={reduced} className="left-[3%] top-[14%]" />
       <TypingBlock startIndex={3} charDelay={72} startDelay={1600} reduced={reduced} className="left-[5%] top-[60%] hidden md:block" />

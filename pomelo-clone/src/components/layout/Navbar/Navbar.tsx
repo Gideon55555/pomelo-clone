@@ -6,6 +6,7 @@ import NavLinks from "./NavLinks";
 import NavButton from "./NavButton";
 import MobileMenu from "./MobileMenu";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [visible, setVisible] = useState(true);
@@ -47,12 +48,7 @@ export default function Navbar() {
     >
       <div className="relative mx-auto w-[calc(100%-2.5rem)] max-w-[1160px]">
         <div
-          className="relative z-0 flex h-[48px] w-full items-center justify-between px-4 sm:px-5"
-          style={{
-            backgroundColor: "rgba(0, 3, 57, 0.72)",
-            backdropFilter: "blur(14px)",
-            WebkitBackdropFilter: "blur(14px)",
-          }}
+          className="relative z-0 flex h-[48px] w-full items-center justify-between bg-[#000339]/70 px-4 backdrop-blur-[14px] light:bg-white/65 sm:px-5"
         >
           {/* Logo Section */}
           <div className="flex items-center">
@@ -68,14 +64,15 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <NavButton />
             <LanguageSwitcher />
+            <ThemeToggle />
             <MobileMenu />
           </div>
         </div>
 
-        <div className="pointer-events-none absolute -bottom-3 -top-3 left-0 z-10 w-px bg-white/[0.08]" />
-        <div className="pointer-events-none absolute -bottom-3 -top-3 right-0 z-10 w-px bg-white/[0.08]" />
-        <div className="pointer-events-none absolute -left-4 -right-4 top-0 z-10 h-px bg-white/[0.08]" />
-        <div className="pointer-events-none absolute -left-4 -right-4 bottom-0 z-10 h-px bg-white/[0.08]" />
+        <div className="pointer-events-none absolute -bottom-3 -top-3 left-0 z-10 w-px bg-white/[0.08] light:bg-[#000339]/10" />
+        <div className="pointer-events-none absolute -bottom-3 -top-3 right-0 z-10 w-px bg-white/[0.08] light:bg-[#000339]/10" />
+        <div className="pointer-events-none absolute -left-4 -right-4 top-0 z-10 h-px bg-white/[0.08] light:bg-[#000339]/10" />
+        <div className="pointer-events-none absolute -left-4 -right-4 bottom-0 z-10 h-px bg-white/[0.08] light:bg-[#000339]/10" />
       </div>
     </header>
   );

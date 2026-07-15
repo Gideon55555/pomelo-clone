@@ -9,7 +9,7 @@ export default function NavLinks() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   return (
-    <ul className="hidden items-center gap-5 text-[13px] font-medium tracking-[-0.025em] text-white/80 lg:flex">
+    <ul className="hidden items-center gap-5 text-[13px] font-medium tracking-[-0.025em] text-white/80 light:text-[#000339]/80 lg:flex">
       {NAV_LINKS.map((link) => {
         const isHovered = hoveredItem === link.title;
 
@@ -21,7 +21,7 @@ export default function NavLinks() {
             onMouseLeave={() => setHoveredItem(null)}
           >
             {/* Main Link Element */}
-            <button className="group relative z-20 flex items-center gap-1.5 transition-colors duration-300 hover:text-white">
+            <button className="group relative z-20 flex items-center gap-1.5 transition-colors duration-300 hover:text-white light:hover:text-[#000339]">
               <span>{link.title}</span>
               {link.dropdown && (
                 <svg
@@ -85,12 +85,10 @@ export default function NavLinks() {
               >
                 <div
                   className="
-                    w-full rounded-xl border border-white/10 p-5
+                    w-full rounded-xl border border-white/10 bg-[#000339] p-5
                     shadow-[0_20px_50px_rgba(0,0,0,0.5)]
+                    light:border-[#000339]/10 light:bg-white light:shadow-[0_20px_50px_rgba(0,3,57,0.15)]
                   "
-                  style={{
-                    backgroundColor: "#000339",
-                  }}
                 >
                   <ul className="flex flex-col gap-3.5">
                     {link.items?.map((item) => (
@@ -100,6 +98,7 @@ export default function NavLinks() {
                           className="
                             block font-geist text-[13px] font-semibold text-white/60 
                             hover:text-white transition-colors duration-150
+                            light:text-[#000339]/60 light:hover:text-[#000339]
                           "
                         >
                           {item}

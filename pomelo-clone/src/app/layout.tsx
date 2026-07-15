@@ -26,6 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
      <body className={`${geistSans.className} ${jetbrainsMono.variable}`}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.getItem("theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}`,
+          }}
+        />
         <CustomCursor />
         {children}
       </body>

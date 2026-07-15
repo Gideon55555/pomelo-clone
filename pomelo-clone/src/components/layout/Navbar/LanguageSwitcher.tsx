@@ -7,6 +7,9 @@ export default function LanguageSwitcher() {
         gap-1
         bg-white/[0.035]
         hover:bg-white/[0.08]
+        light:bg-[#000339]/[0.05]
+        light:hover:bg-[#000339]/10
+        light:text-[#000339]
         text-white
         px-2.5
         py-2

@@ -48,7 +48,7 @@ function TiltCard({ children }: { children: ReactNode }) {
               transformPerspective: 900,
             }
       }
-      className="rounded-[18px] border border-white/[0.07] bg-[linear-gradient(160deg,rgba(52,132,255,0.07),rgba(0,3,57,0.4))] px-6 py-8 backdrop-blur-sm sm:px-10"
+      className="rounded-[18px] border border-white/[0.07] bg-[linear-gradient(160deg,rgba(52,132,255,0.07),rgba(0,3,57,0.4))] px-6 py-8 backdrop-blur-sm light:border-[#000339]/10 light:bg-[linear-gradient(160deg,rgba(52,132,255,0.08),rgba(255,255,255,0.9))] light:shadow-[0_18px_46px_rgba(22,72,255,0.1)] sm:px-10"
     >
       {children}
     </motion.div>
@@ -97,8 +97,8 @@ export default function Testimonials() {
   const testimonial = testimonials[active];
 
   return (
-    <section id="company" className="relative isolate overflow-hidden bg-[#000339] px-6 pb-24 pt-24 text-white sm:px-10">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_44%_40%_at_50%_30%,rgba(22,72,255,0.2),transparent_72%)]" />
+    <section id="company" className="relative isolate overflow-hidden bg-[#000339] px-6 pb-24 pt-24 text-white light:bg-[#f1f2f2] light:text-[#000339] sm:px-10">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_44%_40%_at_50%_30%,rgba(22,72,255,0.2),transparent_72%)] light:bg-[radial-gradient(ellipse_44%_40%_at_50%_30%,rgba(52,132,255,0.13),transparent_72%)]" />
 
       <div className="relative z-10 mx-auto max-w-[820px] text-center">
         <motion.div
@@ -107,7 +107,7 @@ export default function Testimonials() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff]">
+          <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff] light:text-[#1648ff]">
             Success stories
           </p>
           <h2 className="mx-auto mt-3 max-w-[520px] text-[34px] font-semibold leading-[1.02] tracking-[-0.06em] sm:text-[44px]">
@@ -126,12 +126,12 @@ export default function Testimonials() {
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
                 <span className="text-4xl leading-none text-[#3484ff]">&ldquo;</span>
-                <blockquote className="mx-auto mt-2 max-w-[640px] text-[14px] leading-[1.7] text-white/85 sm:text-[16px]">
+                <blockquote className="mx-auto mt-2 max-w-[640px] text-[14px] leading-[1.7] text-white/85 light:text-[#000339]/85 sm:text-[16px]">
                   {testimonial.quote}
                 </blockquote>
                 <figcaption className="mt-6">
                   <p className="text-[14px] font-semibold tracking-[-0.02em]">{testimonial.name}</p>
-                  <p className="mt-1 text-[12px] text-white/60">{testimonial.role}</p>
+                  <p className="mt-1 text-[12px] text-white/60 light:text-[#000339]/60">{testimonial.role}</p>
                 </figcaption>
               </motion.figure>
             </AnimatePresence>
@@ -147,7 +147,9 @@ export default function Testimonials() {
               aria-current={active === index}
               onClick={() => setActive(index)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
-                active === index ? "w-6 bg-[#80b4ff]" : "w-1.5 bg-white/25 hover:bg-white/55"
+                active === index
+                  ? "w-6 bg-[#80b4ff] light:bg-[#1648ff]"
+                  : "w-1.5 bg-white/25 hover:bg-white/55 light:bg-[#000339]/20 light:hover:bg-[#000339]/45"
               }`}
             />
           ))}

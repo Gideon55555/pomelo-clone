@@ -29,8 +29,8 @@ export default function CardDesigner() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="services" className="relative isolate min-h-[720px] overflow-hidden bg-[#000339] px-5 pb-20 pt-24 text-white sm:pt-28">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(22,72,255,0.28),transparent_76%)]" />
+    <section id="services" className="relative isolate min-h-[720px] overflow-hidden bg-[#000339] px-5 pb-20 pt-24 text-white light:bg-[#f1f2f2] light:text-[#000339] sm:pt-28">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(22,72,255,0.28),transparent_76%)] light:bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(52,132,255,0.15),transparent_76%)]" />
       <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(52,132,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(52,132,255,0.04)_1px,transparent_1px)] [background-size:84px_84px]" />
       <div className="hero-orb pointer-events-none absolute left-[25%] top-[53%] h-64 w-64 rounded-full bg-[#1648ff]/20 blur-[100px]" />
       <div className="hero-orb pointer-events-none absolute right-[25%] top-[56%] h-64 w-64 rounded-full bg-[#3484ff]/15 blur-[100px] [animation-delay:-7s]" />
@@ -42,7 +42,7 @@ export default function CardDesigner() {
         transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 mx-auto max-w-[1050px] text-center"
       >
-        <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff]">
+        <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff] light:text-[#1648ff]">
           Your product, your way
         </p>
         <h2 className="mx-auto mt-3 max-w-[570px] text-[43px] font-semibold leading-[0.98] tracking-[-0.065em] sm:text-[58px]">
@@ -50,7 +50,7 @@ export default function CardDesigner() {
           <br />
           we build it
         </h2>
-        <p className="mx-auto mt-5 max-w-[560px] text-[13px] leading-relaxed text-white/70 sm:text-[15px]">
+        <p className="mx-auto mt-5 max-w-[560px] text-[13px] leading-relaxed text-white/70 light:text-[#000339]/70 sm:text-[15px]">
           From discovery to launch, we turn your ideas into high-performing digital products built around your business.
         </p>
         <div className="mt-5">
@@ -95,19 +95,19 @@ export default function CardDesigner() {
             transition={{ delay: index * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className={`absolute z-20 hidden w-[280px] rounded-md border px-3.5 py-2.5 text-left backdrop-blur-md transition-colors sm:block ${choice.position} ${
               selected === index
-                ? "border-[#80b4ff]/75 bg-[#1648ff]/30 shadow-[0_10px_26px_rgba(22,72,255,0.34)]"
-                : "border-white/10 bg-[#000339]/65 hover:border-[#3484ff]/55 hover:bg-[#1648ff]/15"
+                ? "border-[#80b4ff]/75 bg-[#1648ff]/30 shadow-[0_10px_26px_rgba(22,72,255,0.34)] light:border-[#1648ff]/55 light:bg-[#1648ff]/15"
+                : "border-white/10 bg-[#000339]/65 hover:border-[#3484ff]/55 hover:bg-[#1648ff]/15 light:border-[#000339]/10 light:bg-white/75 light:hover:bg-[#1648ff]/10"
             }`}
           >
             <span className="flex items-center gap-2">
-              <span className="grid h-7 w-7 place-items-center rounded border border-white/10 text-[#80b4ff]">
+              <span className="grid h-7 w-7 place-items-center rounded border border-white/10 text-[#80b4ff] light:border-[#000339]/10 light:text-[#1648ff]">
                 <choice.icon className="h-3.5 w-3.5" strokeWidth={1.8} />
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block text-[12px] font-medium text-white/90">{choice.label}</span>
-                <span className="mt-0.5 block truncate text-[10px] text-white/60">{choice.detail}</span>
+                <span className="block text-[12px] font-medium text-white/90 light:text-[#000339]/90">{choice.label}</span>
+                <span className="mt-0.5 block truncate text-[10px] text-white/60 light:text-[#000339]/60">{choice.detail}</span>
               </span>
-              <span className="grid h-6 w-6 place-items-center rounded bg-white/[0.08] text-white/65">
+              <span className="grid h-6 w-6 place-items-center rounded bg-white/[0.08] text-white/65 light:bg-[#000339]/[0.06] light:text-[#000339]/60">
                 <Plus className="h-3.5 w-3.5" strokeWidth={1.8} />
               </span>
             </span>
@@ -115,10 +115,10 @@ export default function CardDesigner() {
         ))}
 
         <div className="absolute bottom-1 left-1/2 flex -translate-x-1/2 gap-2">
-          <button className="flex items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.03] px-4 py-2.5 text-[12px] text-white/70 transition hover:border-[#3484ff]/60 hover:text-white">
+          <button className="flex items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.03] px-4 py-2.5 text-[12px] text-white/70 transition hover:border-[#3484ff]/60 hover:text-white light:border-[#000339]/15 light:bg-white/60 light:text-[#000339]/70 light:hover:text-[#000339]">
             <Undo2 className="h-3.5 w-3.5" strokeWidth={1.8} /> Go back
           </button>
-          <button className="flex items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.03] px-4 py-2.5 text-[12px] text-white/70 transition hover:border-[#3484ff]/60 hover:text-white">
+          <button className="flex items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.03] px-4 py-2.5 text-[12px] text-white/70 transition hover:border-[#3484ff]/60 hover:text-white light:border-[#000339]/15 light:bg-white/60 light:text-[#000339]/70 light:hover:text-[#000339]">
             <RotateCcw className="h-3.5 w-3.5" strokeWidth={1.8} /> Start over
           </button>
         </div>
