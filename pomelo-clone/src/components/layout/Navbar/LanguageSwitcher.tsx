@@ -10,7 +10,7 @@ export default function LanguageSwitcher() {
         text-white
         px-2.5
         py-2
-        text-[10px]
+        text-[12px]
         font-medium
         rounded-[2px]
         border-none

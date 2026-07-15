@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import MagneticButton from "@/components/common/MagneticButton";
 
 const team = [
   { name: "Cecilia Marin", role: "Head of Business Development", initials: "CM" },
@@ -27,13 +28,13 @@ export default function Contact() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-[8px] font-medium uppercase tracking-[0.3em] text-[#80b4ff]">
+          <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff]">
             Let&apos;s talk
           </p>
           <h2 className="mx-auto mt-3 max-w-[480px] text-[40px] font-semibold leading-[0.98] tracking-[-0.065em] sm:text-[52px]">
             Build the solution your business needs
           </h2>
-          <p className="mx-auto mt-5 max-w-[380px] text-[11px] leading-relaxed text-white/55 sm:text-xs">
+          <p className="mx-auto mt-5 max-w-[420px] text-[13px] leading-relaxed text-white/70 sm:text-[15px]">
             Talk to our team and get started faster.
           </p>
         </motion.div>
@@ -52,8 +53,8 @@ export default function Contact() {
               <div className="grid h-12 w-12 place-items-center rounded-full border border-[#3484ff]/40 bg-[#1648ff]/25 text-[12px] font-semibold text-[#b3d2ff]">
                 {member.initials}
               </div>
-              <p className="mt-3 text-[10px] font-semibold tracking-[-0.02em]">{member.name}</p>
-              <p className="mt-1 text-[8px] leading-snug text-white/45">{member.role}</p>
+              <p className="mt-3 text-[13px] font-semibold tracking-[-0.02em]">{member.name}</p>
+              <p className="mt-1 text-[11px] leading-snug text-white/60">{member.role}</p>
             </motion.div>
           ))}
         </div>
@@ -65,9 +66,12 @@ export default function Contact() {
           transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="mt-10"
         >
-          <button className="button-shimmer rounded-[2px] bg-gradient-to-r from-[#1648ff] to-[#3484ff] px-6 py-3 text-[11px] font-medium text-white shadow-[0_8px_26px_rgba(22,72,255,0.4)]">
+          <MagneticButton
+            pulse
+            className="rounded-[2px] bg-gradient-to-r from-[#1648ff] to-[#3484ff] px-7 py-3.5 text-[14px] font-medium text-white shadow-[0_8px_26px_rgba(22,72,255,0.4)]"
+          >
             Contact us
-          </button>
+          </MagneticButton>
         </motion.div>
       </div>
     </section>

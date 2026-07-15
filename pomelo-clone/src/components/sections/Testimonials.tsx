@@ -1,7 +1,59 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "framer-motion";
+import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
+
+function TiltCard({ children }: { children: ReactNode }) {
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const springRotateX = useSpring(rotateX, { stiffness: 180, damping: 18 });
+  const springRotateY = useSpring(rotateY, { stiffness: 180, damping: 18 });
+  const shouldReduceMotion = useReducedMotion();
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    setCanHover(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, []);
+
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    if (!canHover || shouldReduceMotion) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const px = (event.clientX - rect.left) / rect.width - 0.5;
+    const py = (event.clientY - rect.top) / rect.height - 0.5;
+    rotateY.set(px * 9);
+    rotateX.set(-py * 9);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={
+        shouldReduceMotion
+          ? undefined
+          : {
+              rotateX: springRotateX,
+              rotateY: springRotateY,
+              transformPerspective: 900,
+            }
+      }
+      className="rounded-[18px] border border-white/[0.07] bg-[linear-gradient(160deg,rgba(52,132,255,0.07),rgba(0,3,57,0.4))] px-6 py-8 backdrop-blur-sm sm:px-10"
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 const testimonials = [
   {
@@ -55,7 +107,7 @@ export default function Testimonials() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-[8px] font-medium uppercase tracking-[0.3em] text-[#80b4ff]">
+          <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff]">
             Success stories
           </p>
           <h2 className="mx-auto mt-3 max-w-[520px] text-[34px] font-semibold leading-[1.02] tracking-[-0.06em] sm:text-[44px]">
@@ -63,25 +115,27 @@ export default function Testimonials() {
           </h2>
         </motion.div>
 
-        <div className="relative mt-12 min-h-[190px]">
-          <AnimatePresence mode="wait">
-            <motion.figure
-              key={active}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={shouldReduceMotion ? undefined : { opacity: 0, y: -14 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <span className="text-4xl leading-none text-[#3484ff]">&ldquo;</span>
-              <blockquote className="mx-auto mt-2 max-w-[640px] text-[13px] leading-[1.65] text-white/80 sm:text-[15px]">
-                {testimonial.quote}
-              </blockquote>
-              <figcaption className="mt-6">
-                <p className="text-[12px] font-semibold tracking-[-0.02em]">{testimonial.name}</p>
-                <p className="mt-1 text-[10px] text-white/45">{testimonial.role}</p>
-              </figcaption>
-            </motion.figure>
-          </AnimatePresence>
+        <div className="relative mt-12 min-h-[230px]">
+          <TiltCard>
+            <AnimatePresence mode="wait">
+              <motion.figure
+                key={active}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={shouldReduceMotion ? undefined : { opacity: 0, y: -14 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <span className="text-4xl leading-none text-[#3484ff]">&ldquo;</span>
+                <blockquote className="mx-auto mt-2 max-w-[640px] text-[14px] leading-[1.7] text-white/85 sm:text-[16px]">
+                  {testimonial.quote}
+                </blockquote>
+                <figcaption className="mt-6">
+                  <p className="text-[14px] font-semibold tracking-[-0.02em]">{testimonial.name}</p>
+                  <p className="mt-1 text-[12px] text-white/60">{testimonial.role}</p>
+                </figcaption>
+              </motion.figure>
+            </AnimatePresence>
+          </TiltCard>
         </div>
 
         <div className="mt-8 flex justify-center gap-2">

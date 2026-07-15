@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { Braces, Cloud, Globe, Smartphone, TestTube2 } from "lucide-react";
 
 const modules = [
   {
@@ -8,6 +9,7 @@ const modules = [
     title: "Mobile Development",
     items: ["iOS & Android apps", "Cross-platform builds", "App store delivery"],
     link: "Explore Mobile",
+    icon: Smartphone,
     span: "lg:col-span-2",
   },
   {
@@ -15,6 +17,7 @@ const modules = [
     title: "Web Development",
     items: ["High-performance frontends", "Robust backend APIs", "Progressive web apps"],
     link: "Explore Web",
+    icon: Globe,
     span: "lg:col-span-2",
   },
   {
@@ -22,6 +25,7 @@ const modules = [
     title: "Custom Software",
     items: ["Workflow automation", "System integrations"],
     link: "Explore Custom Software",
+    icon: Braces,
     span: "lg:col-span-2",
   },
   {
@@ -29,6 +33,7 @@ const modules = [
     title: "Cloud & DevOps",
     items: ["Cloud architecture", "CI/CD pipelines", "Monitoring & scaling"],
     link: "Explore Cloud",
+    icon: Cloud,
     span: "lg:col-span-3",
   },
   {
@@ -36,6 +41,7 @@ const modules = [
     title: "QA & Support",
     items: ["Automated testing", "Ongoing maintenance"],
     link: "Explore QA",
+    icon: TestTube2,
     span: "lg:col-span-3",
   },
 ];
@@ -56,13 +62,13 @@ export default function ModularSystem() {
           transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto max-w-[640px] text-center"
         >
-          <p className="text-[8px] font-medium uppercase tracking-[0.3em] text-[#80b4ff]">
+          <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff]">
             Modular services
           </p>
           <h2 className="mt-3 text-[34px] font-semibold leading-[1.04] tracking-[-0.06em] sm:text-[44px]">
             A modular, end-to-end team to design, build, and scale your product.
           </h2>
-          <p className="mx-auto mt-5 max-w-[480px] text-[11px] leading-relaxed text-white/55 sm:text-xs">
+          <p className="mx-auto mt-5 max-w-[520px] text-[13px] leading-relaxed text-white/70 sm:text-[15px]">
             From strategy to launch and beyond, engage the capabilities you need — as a full product team or alongside your own.
           </p>
         </motion.div>
@@ -78,19 +84,24 @@ export default function ModularSystem() {
               transition={{ delay: index * 0.09, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className={`group flex flex-col rounded-[14px] border border-white/[0.09] bg-[linear-gradient(150deg,rgba(52,132,255,0.1),rgba(0,3,57,0.6))] p-6 backdrop-blur-sm transition-[border-color,box-shadow] duration-300 hover:border-[#80b4ff]/60 hover:shadow-[0_18px_46px_rgba(22,72,255,0.3)] ${module.span}`}
             >
-              <p className="text-[8px] font-medium uppercase tracking-[0.24em] text-[#80b4ff]/85">
-                {module.eyebrow}
-              </p>
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-[#80b4ff]/90">
+                  {module.eyebrow}
+                </p>
+                <span className="grid h-8 w-8 place-items-center rounded-lg border border-[#3484ff]/35 bg-[#1648ff]/15 text-[#80b4ff] transition-transform duration-300 ease-out group-hover:-rotate-6 group-hover:scale-110">
+                  <module.icon className="h-3.5 w-3.5" strokeWidth={1.7} />
+                </span>
+              </div>
               <h3 className="mt-2 text-[19px] font-semibold tracking-[-0.045em]">{module.title}</h3>
               <ul className="mt-4 flex flex-col gap-2">
                 {module.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-[10px] text-white/60">
+                  <li key={item} className="flex items-center gap-2 text-[13px] text-white/70">
                     <span className="h-1 w-1 rounded-full bg-[#3484ff]" />
                     {item}
                   </li>
                 ))}
               </ul>
-              <span className="mt-auto pt-5 text-[10px] font-medium text-[#80b4ff] transition-colors group-hover:text-white">
+              <span className="mt-auto pt-5 text-[13px] font-medium text-[#80b4ff] transition-colors group-hover:text-white">
                 {module.link} →
               </span>
             </motion.article>

@@ -8,7 +8,7 @@ export default function NavButton() {
         hover:brightness-115
         text-white
         font-geist
-        text-[10px]
+        text-[13px]
         font-medium
         tracking-wide
         rounded-[4px]

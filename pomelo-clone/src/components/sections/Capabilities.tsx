@@ -1,23 +1,54 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { Cpu, Globe, SlidersHorizontal, Zap } from "lucide-react";
+import MagneticButton from "@/components/common/MagneticButton";
+import { useCountUp } from "@/hooks/useCountUp";
+
+function CountUpStat({
+  value,
+  decimals = 0,
+  suffix = "",
+  label,
+}: {
+  value: number;
+  decimals?: number;
+  suffix?: string;
+  label: string;
+}) {
+  const { ref, display } = useCountUp<HTMLParagraphElement>(value, 1400, decimals);
+
+  return (
+    <div className="rounded-lg border border-white/[0.07] bg-[#000339]/60 p-3">
+      <p ref={ref} className="text-[16px] font-semibold text-white">
+        {display}
+        {suffix}
+      </p>
+      <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-white/60">{label}</p>
+    </div>
+  );
+}
 
 const capabilities = [
   {
     title: "Global scalability",
     description: "One codebase and one team, ready to grow with you across every market you enter.",
+    icon: Globe,
   },
   {
     title: "Flexible solutions",
     description: "Architecture and engagement models shaped around your business, not the other way around.",
+    icon: SlidersHorizontal,
   },
   {
     title: "Speed with excellence",
     description: "Short, focused delivery cycles that ship real value without cutting corners.",
+    icon: Zap,
   },
   {
     title: "Next-gen tech",
     description: "API-first, cloud-native foundations for fast, reliable, maintainable products.",
+    icon: Cpu,
   },
 ];
 
@@ -36,13 +67,13 @@ export default function Capabilities() {
           transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
           className="text-center"
         >
-          <p className="text-[8px] font-medium uppercase tracking-[0.3em] text-[#80b4ff]">
+          <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff]">
             Key capabilities
           </p>
           <h2 className="mx-auto mt-3 max-w-[540px] text-[43px] font-semibold leading-[0.98] tracking-[-0.065em] sm:text-[54px]">
             Technology built to scale
           </h2>
-          <p className="mx-auto mt-5 max-w-[440px] text-[11px] leading-relaxed text-white/55 sm:text-xs">
+          <p className="mx-auto mt-5 max-w-[480px] text-[13px] leading-relaxed text-white/70 sm:text-[15px]">
             Everything you need to build, run, and grow your digital product.
           </p>
         </motion.div>
@@ -56,13 +87,13 @@ export default function Capabilities() {
               whileHover={{ y: -7 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: index * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="rounded-[14px] border border-white/[0.09] bg-[linear-gradient(160deg,rgba(52,132,255,0.1),rgba(0,3,57,0.55))] p-6 backdrop-blur-sm transition-[border-color,box-shadow] duration-300 hover:border-[#80b4ff]/60 hover:shadow-[0_18px_46px_rgba(22,72,255,0.3)]"
+              className="group rounded-[14px] border border-white/[0.09] bg-[linear-gradient(160deg,rgba(52,132,255,0.1),rgba(0,3,57,0.55))] p-6 backdrop-blur-sm transition-[border-color,box-shadow] duration-300 hover:border-[#80b4ff]/60 hover:shadow-[0_18px_46px_rgba(22,72,255,0.3)]"
             >
-              <div className="grid h-9 w-9 place-items-center rounded-lg border border-[#3484ff]/40 bg-[#1648ff]/20 text-[13px] text-[#80b4ff]">
-                {["◈", "▣", "◉", "▷"][index]}
+              <div className="grid h-9 w-9 place-items-center rounded-lg border border-[#3484ff]/40 bg-[#1648ff]/20 text-[#80b4ff] transition-transform duration-300 ease-out group-hover:-rotate-6 group-hover:scale-110">
+                <capability.icon className="h-4 w-4" strokeWidth={1.7} />
               </div>
-              <h3 className="mt-4 text-[15px] font-semibold tracking-[-0.04em]">{capability.title}</h3>
-              <p className="mt-2 text-[10px] leading-[1.5] text-white/55">{capability.description}</p>
+              <h3 className="mt-4 text-[17px] font-semibold tracking-[-0.04em]">{capability.title}</h3>
+              <p className="mt-2 text-[13px] leading-[1.55] text-white/70">{capability.description}</p>
             </motion.article>
           ))}
         </div>
@@ -75,20 +106,22 @@ export default function Capabilities() {
           className="mt-16 grid items-center gap-10 lg:grid-cols-2"
         >
           <div>
-            <p className="text-[8px] font-medium uppercase tracking-[0.3em] text-[#80b4ff]">
+            <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff]">
               Dashboard & AI
             </p>
             <h3 className="mt-3 max-w-[400px] text-[26px] font-semibold leading-[1.08] tracking-[-0.05em] sm:text-[32px]">
               Full visibility of your product, powered by AI
             </h3>
-            <p className="mt-4 max-w-[420px] text-[11px] leading-relaxed text-white/60 sm:text-xs">
+            <p className="mt-4 max-w-[460px] text-[13px] leading-relaxed text-white/70 sm:text-[15px]">
               Follow progress, releases, and performance in real time. AI assists every layer of
               our delivery — automating routine work, catching issues early, and shortening your
               time to market.
             </p>
-            <button className="button-shimmer mt-6 rounded-[2px] bg-gradient-to-r from-[#1648ff] to-[#3484ff] px-5 py-2.5 text-[10px] font-medium text-white shadow-[0_8px_24px_rgba(22,72,255,0.35)]">
-              Explore how we work
-            </button>
+            <div className="mt-6">
+              <MagneticButton className="rounded-[2px] bg-gradient-to-r from-[#1648ff] to-[#3484ff] px-6 py-3 text-[14px] font-medium text-white shadow-[0_8px_24px_rgba(22,72,255,0.35)]">
+                Explore how we work
+              </MagneticButton>
+            </div>
           </div>
 
           <motion.div
@@ -97,20 +130,13 @@ export default function Capabilities() {
             className="relative rounded-[16px] border border-[#3484ff]/35 bg-[linear-gradient(150deg,rgba(22,72,255,0.18),rgba(0,3,57,0.75))] p-6 shadow-[0_24px_60px_rgba(22,72,255,0.25)]"
           >
             <div className="flex items-center justify-between border-b border-white/[0.07] pb-3">
-              <span className="text-[10px] font-semibold tracking-[-0.02em] text-white/85">Delivery dashboard</span>
-              <span className="rounded-full bg-[#1648ff]/30 px-2 py-0.5 text-[8px] text-[#80b4ff]">Live</span>
+              <span className="text-[13px] font-semibold tracking-[-0.02em] text-white/90">Delivery dashboard</span>
+              <span className="rounded-full bg-[#1648ff]/30 px-2.5 py-1 text-[10px] text-[#80b4ff]">Live</span>
             </div>
             <div className="mt-4 grid grid-cols-3 gap-3">
-              {[
-                { label: "Releases shipped", value: "128" },
-                { label: "Uptime", value: "99.98%" },
-                { label: "Open issues", value: "3" },
-              ].map((stat) => (
-                <div key={stat.label} className="rounded-lg border border-white/[0.07] bg-[#000339]/60 p-3">
-                  <p className="text-[13px] font-semibold text-white">{stat.value}</p>
-                  <p className="mt-1 text-[7px] uppercase tracking-[0.14em] text-white/45">{stat.label}</p>
-                </div>
-              ))}
+              <CountUpStat value={128} label="Releases shipped" />
+              <CountUpStat value={99.98} decimals={2} suffix="%" label="Uptime" />
+              <CountUpStat value={3} label="Open issues" />
             </div>
             <div className="mt-4 flex items-end gap-1.5">
               {[34, 52, 41, 66, 58, 78, 72, 90, 84, 96].map((height, index) => (

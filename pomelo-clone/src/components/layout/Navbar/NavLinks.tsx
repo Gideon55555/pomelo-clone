@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { NAV_LINKS } from "@/constants/navigation";
 
@@ -8,7 +9,7 @@ export default function NavLinks() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   return (
-    <ul className="hidden items-center gap-3.5 text-[9px] font-medium tracking-[-0.025em] text-white/75 lg:flex">
+    <ul className="hidden items-center gap-5 text-[13px] font-medium tracking-[-0.025em] text-white/80 lg:flex">
       {NAV_LINKS.map((link) => {
         const isHovered = hoveredItem === link.title;
 
@@ -39,7 +40,13 @@ export default function NavLinks() {
                   />
                 </svg>
               )}
-              <span className="absolute -bottom-1 left-1/2 h-px w-0 -translate-x-1/2 bg-[#3484FF] transition-all duration-300 group-hover:w-full" />
+              <motion.span
+                aria-hidden="true"
+                initial={false}
+                animate={{ scaleX: isHovered ? 1 : 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute -bottom-1 left-0 right-0 h-px origin-left bg-[#3484FF]"
+              />
             </button>
 
             {/* ================= RADIAL BOTTOM-ANCHORED GLOW (Applies to all hovered items) ================= */}

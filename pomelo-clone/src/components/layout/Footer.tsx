@@ -34,18 +34,33 @@ export default function Footer() {
               </svg>
               <span>qua</span>
             </a>
-            <p className="mt-4 max-w-[260px] text-[10px] leading-relaxed text-white/45">
+            <p className="mt-4 max-w-[280px] text-[13px] leading-relaxed text-white/60">
               Subscribe to our newsletter and receive the latest industry news.
             </p>
             <form className="mt-4 flex max-w-[280px] overflow-hidden rounded-[3px] border border-white/[0.12]">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="min-w-0 flex-1 bg-white/[0.03] px-3 py-2 text-[10px] text-white placeholder:text-white/30 focus:outline-none"
-              />
+              <div className="relative min-w-0 flex-1">
+                <input
+                  id="newsletter-email"
+                  type="email"
+                  placeholder=" "
+                  autoComplete="email"
+                  className="peer w-full bg-white/[0.03] px-3 pb-2 pt-5 text-[13px] text-white focus:outline-none"
+                />
+                <label
+                  htmlFor="newsletter-email"
+                  className="pointer-events-none absolute left-3 top-1/2 origin-left -translate-y-1/2 text-[13px] text-white/45 transition-transform duration-200 ease-out peer-focus:-translate-y-[17px] peer-focus:scale-[0.72] peer-focus:text-[#80b4ff] peer-[:not(:placeholder-shown)]:-translate-y-[17px] peer-[:not(:placeholder-shown)]:scale-[0.72]"
+                >
+                  Your email
+                </label>
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-0 left-0 h-[2px] w-full origin-left scale-x-0 bg-gradient-to-r from-[#1648ff] to-[#80b4ff] transition-transform duration-300 ease-out peer-focus:scale-x-100"
+                />
+              </div>
               <button
                 type="button"
-                className="bg-gradient-to-r from-[#1648ff] to-[#3484ff] px-4 text-[10px] font-medium transition hover:brightness-110"
+                data-cursor="hover"
+                className="bg-gradient-to-r from-[#1648ff] to-[#3484ff] px-4 text-[13px] font-medium transition hover:brightness-110"
               >
                 Subscribe
               </button>
@@ -55,13 +70,13 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {columns.map((column) => (
               <div key={column.heading}>
-                <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/40">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/55">
                   {column.heading}
                 </p>
                 <ul className="mt-4 flex flex-col gap-2.5">
                   {column.links.map((link) => (
                     <li key={link}>
-                      <a href="#" className="text-[10px] text-white/60 transition-colors hover:text-white">
+                      <a href="#" className="text-[13px] text-white/70 transition-colors hover:text-white">
                         {link}
                       </a>
                     </li>
@@ -73,10 +88,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/[0.07] pt-6 sm:flex-row">
-          <p className="text-[9px] text-white/35">
+          <p className="text-[12px] text-white/55">
             © 2026 Qua. All rights reserved. Service availability varies by market.
           </p>
-          <div className="flex gap-4 text-[10px] text-white/40">
+          <div className="flex gap-4 text-[13px] text-white/60">
             <a href="#" aria-label="X" className="transition-colors hover:text-white">X</a>
             <a href="#" aria-label="YouTube" className="transition-colors hover:text-white">YouTube</a>
             <a href="#" aria-label="LinkedIn" className="transition-colors hover:text-white">LinkedIn</a>
