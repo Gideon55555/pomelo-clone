@@ -1,39 +1,155 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Eyebrow from "@/components/common/Eyebrow";
 import MagneticButton from "@/components/common/MagneticButton";
 import {
+  Braces,
+  Building2,
+  ChevronDown,
+  Cloud,
   Crosshair,
+  Gauge,
+  Globe,
+  Handshake,
   Layers,
+  LifeBuoy,
   MonitorSmartphone,
-  Plus,
+  RefreshCw,
   Rocket,
   RotateCcw,
+  Smile,
+  Smartphone,
   Target,
+  TestTube2,
+  TrendingUp,
   Undo2,
   Users,
+  Workflow,
+  type LucideIcon,
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { FULL_MOTION, gsap, useGSAP } from "@/lib/gsap";
 
-const choices = [
-  { label: "Choose your product", detail: "Mobile app, web platform, or custom software.", icon: MonitorSmartphone, position: "left-0 top-8 sm:left-[10%]" },
-  { label: "Define your goals", detail: "Growth, efficiency, customer experience, or scale.", icon: Target, position: "left-8 top-40 sm:left-[18%]" },
-  { label: "Select your audience", detail: "Customers, teams, partners, or internal users.", icon: Users, position: "left-14 top-64 sm:left-[25%]" },
-  { label: "Set the project scope", detail: "MVP, redesign, or end-to-end product delivery.", icon: Crosshair, position: "left-20 top-[21rem] sm:left-[31%]" },
-  { label: "Choose a platform", detail: "iOS, Android, web, cloud, or all of the above.", icon: Layers, position: "right-1 top-24 sm:right-[13%]" },
-  { label: "Plan your launch", detail: "Build, test, release, and evolve with confidence.", icon: Rocket, position: "right-0 top-64 sm:right-[5%]" },
+type ChoiceOption = {
+  label: string;
+  detail: string;
+  icon: LucideIcon;
+};
+
+type PlannerChoice = ChoiceOption & {
+  position: string;
+  menuSide?: "top" | "bottom";
+  options: ChoiceOption[];
+};
+
+const choices: PlannerChoice[] = [
+  {
+    label: "Choose your product",
+    detail: "Mobile app, web platform, or custom software.",
+    icon: MonitorSmartphone,
+    position: "left-0 top-8",
+    options: [
+      { label: "Mobile App", detail: "Native or cross-platform mobile product.", icon: Smartphone },
+      { label: "Web Platform", detail: "Responsive, high-performance web product.", icon: Globe },
+      { label: "Custom Software", detail: "Software shaped around your operations.", icon: Braces },
+    ],
+  },
+  {
+    label: "Define your goals",
+    detail: "Growth, efficiency, customer experience, or scale.",
+    icon: Target,
+    position: "left-0 top-40",
+    options: [
+      { label: "Drive Growth", detail: "Acquire users and unlock new revenue.", icon: TrendingUp },
+      { label: "Improve Efficiency", detail: "Automate workflows and reduce overhead.", icon: Gauge },
+      { label: "Better Experience", detail: "Create a product customers enjoy.", icon: Smile },
+    ],
+  },
+  {
+    label: "Select your audience",
+    detail: "Customers, teams, partners, or internal users.",
+    icon: Users,
+    position: "left-0 top-72",
+    menuSide: "top",
+    options: [
+      { label: "Customers", detail: "A customer-facing digital experience.", icon: Users },
+      { label: "Internal Teams", detail: "Tools for people inside your business.", icon: Building2 },
+      { label: "Partners", detail: "A connected partner or vendor portal.", icon: Handshake },
+    ],
+  },
+  {
+    label: "Set the project scope",
+    detail: "MVP, redesign, or end-to-end product delivery.",
+    icon: Crosshair,
+    position: "right-0 top-8",
+    menuSide: "top",
+    options: [
+      { label: "MVP", detail: "Validate the idea with a focused first release.", icon: Rocket },
+      { label: "Product Redesign", detail: "Modernize an existing digital product.", icon: RefreshCw },
+      { label: "End-to-end Build", detail: "Discovery through launch and support.", icon: Workflow },
+    ],
+  },
+  {
+    label: "Choose a platform",
+    detail: "iOS, Android, web, cloud, or all of the above.",
+    icon: Layers,
+    position: "right-0 top-40",
+    options: [
+      { label: "Web", detail: "Modern browser-based application.", icon: Globe },
+      { label: "Cloud", detail: "Scalable cloud-native solution.", icon: Cloud },
+      { label: "Multi-platform", detail: "A connected experience across devices.", icon: Layers },
+    ],
+  },
+  {
+    label: "Plan your launch",
+    detail: "Build, test, release, and evolve with confidence.",
+    icon: Rocket,
+    position: "right-0 top-72",
+    menuSide: "top",
+    options: [
+      { label: "Prototype", detail: "Test the concept before full production.", icon: TestTube2 },
+      { label: "Production Launch", detail: "Build, test, and release with confidence.", icon: Rocket },
+      { label: "Ongoing Support", detail: "Maintain and evolve after launch.", icon: LifeBuoy },
+    ],
+  },
 ];
 
 export default function CardDesigner() {
-  const [selected, setSelected] = useState<number | null>(null);
+  const [openChoice, setOpenChoice] = useState<number | null>(null);
+  const [selections, setSelections] = useState<Record<number, ChoiceOption>>({});
+  const [previewOption, setPreviewOption] = useState<ChoiceOption | null>(null);
   const shouldReduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   const playgroundRef = useRef<HTMLDivElement>(null);
   const editorRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const lineRef = useRef<SVGPolylineElement>(null);
+
+  const selectOption = (choiceIndex: number, option: ChoiceOption) => {
+    setSelections((current) => ({ ...current, [choiceIndex]: option }));
+    setPreviewOption(option);
+    setOpenChoice(null);
+  };
+
+  const resetPlanner = () => {
+    setSelections({});
+    setOpenChoice(null);
+    setPreviewOption(null);
+  };
+
+  const goBack = () => {
+    const selectedIndexes = Object.keys(selections).map(Number);
+    if (!selectedIndexes.length) return;
+    const lastIndex = selectedIndexes[selectedIndexes.length - 1];
+    setSelections((current) => {
+      const next = { ...current };
+      delete next[lastIndex];
+      return next;
+    });
+    setOpenChoice(lastIndex);
+    setPreviewOption(null);
+  };
 
   useGSAP(
     () => {
@@ -138,6 +254,8 @@ export default function CardDesigner() {
     { scope: sectionRef }
   );
 
+  const PreviewIcon = previewOption?.icon;
+
   return (
     <section ref={sectionRef} id="services" className="relative isolate min-h-[720px] overflow-hidden bg-[#0B2023] px-5 pb-20 pt-24 text-[#EEFEFC] light:bg-[#EEFEFC] light:text-[#0B2023] sm:pt-28">
       <div className="glow-accent absolute inset-0 bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(0,79,76,0.28),transparent_76%)] light:bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(26,243,220,0.15),transparent_76%)]" />
@@ -204,57 +322,172 @@ export default function CardDesigner() {
           ref={editorRef}
           animate={shouldReduceMotion ? undefined : { y: [0, -5, 0], rotate: [-1, 1, -1] }}
           transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-1/2 top-[112px] z-20 h-[170px] w-[310px] -translate-x-1/2 overflow-hidden rounded-xl border border-[#1AF3DC]/45 bg-[linear-gradient(135deg,rgba(0,79,76,0.32),rgba(11,32,35,0.86))] text-left shadow-[0_24px_55px_rgba(0,79,76,0.36)]"
+          className="absolute left-1/2 top-[112px] z-30 h-[170px] w-[280px] -translate-x-1/2 overflow-hidden rounded-xl border border-[#1AF3DC]/45 bg-[linear-gradient(135deg,rgba(0,79,76,0.32),rgba(11,32,35,0.86))] text-left shadow-[0_24px_55px_rgba(0,79,76,0.36)] sm:w-[250px] lg:w-[310px]"
         >
           <div className="flex items-center gap-2 border-b border-white/[0.08] bg-[#0B2023]/70 px-4 py-2.5">
             <span className="h-2 w-2 rounded-full bg-[#004F4C]/80" />
             <span className="h-2 w-2 rounded-full bg-[#1AF3DC]/70" />
             <span className="h-2 w-2 rounded-full bg-[#1AF3DC]/60" />
             <span className="ml-2 text-[10px] font-medium tracking-[0.06em] text-[#609395]">
-              your-product.tsx — qua
+              {previewOption ? `${previewOption.label} — qua` : "your-product.tsx — qua"}
             </span>
           </div>
-          <div className="space-y-2 px-4 py-3.5 font-mono text-[11px] leading-relaxed">
-            <p className="editor-line"><span className="text-[#1AF3DC]">import</span> <span className="text-[#EEFEFC]/85">&#123; idea &#125;</span> <span className="text-[#1AF3DC]">from</span> <span className="text-[#609395]">&quot;you&quot;</span>;</p>
-            <p className="editor-line"><span className="text-[#1AF3DC]">const</span> <span className="text-[#1AF3DC]">product</span> <span className="text-[#609395]">=</span> <span className="text-[#1AF3DC]">await</span> <span className="text-[#EEFEFC]">qua</span><span className="text-[#609395]">.</span><span className="text-[#1AF3DC]">build</span><span className="text-[#609395]">(idea);</span></p>
-            <p className="editor-line"><span className="text-[#EEFEFC]">product</span><span className="text-[#609395]">.</span><span className="text-[#1AF3DC]">ship</span><span className="text-[#609395]">();</span> <span className="text-[#609395]">{"// build · ship · grow"}</span></p>
-          </div>
+          <AnimatePresence mode="wait" initial={false}>
+            {previewOption && PreviewIcon ? (
+              <motion.div
+                key={previewOption.label}
+                initial={{ opacity: 0, scale: 0.85, rotate: -5 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                exit={{ opacity: 0, scale: 0.88, rotate: 4 }}
+                transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                className="relative flex h-[132px] items-center gap-4 overflow-hidden px-5"
+              >
+                <div className="absolute -left-7 top-2 h-28 w-28 rounded-full bg-[#004F4C]/55 blur-2xl" />
+                <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-[#1AF3DC]/15 blur-2xl" />
+                <div className="relative grid h-16 w-16 shrink-0 place-items-center rounded-2xl border border-[#1AF3DC]/35 bg-[linear-gradient(145deg,rgba(26,243,220,0.24),rgba(0,79,76,0.72))] text-[#1AF3DC] shadow-[0_14px_30px_rgba(0,79,76,0.4)]">
+                  <PreviewIcon className="h-7 w-7" strokeWidth={1.6} />
+                  <span className="absolute -right-2 -top-2 h-4 w-4 rounded-full border border-[#1AF3DC]/30 bg-[#0B2023]" />
+                </div>
+                <div className="relative min-w-0">
+                  <p className="text-[15px] font-semibold tracking-[-0.035em] text-[#EEFEFC]">
+                    {previewOption.label}
+                  </p>
+                  <p className="mt-1.5 text-[11px] leading-[1.45] text-[#609395]">
+                    {previewOption.detail}
+                  </p>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="code-preview"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="space-y-2 px-4 py-3.5 font-mono text-[11px] leading-relaxed"
+              >
+                <p className="editor-line"><span className="text-[#1AF3DC]">import</span> <span className="text-[#EEFEFC]/85">&#123; idea &#125;</span> <span className="text-[#1AF3DC]">from</span> <span className="text-[#609395]">&quot;you&quot;</span>;</p>
+                <p className="editor-line"><span className="text-[#1AF3DC]">const</span> <span className="text-[#1AF3DC]">product</span> <span className="text-[#609395]">=</span> <span className="text-[#1AF3DC]">await</span> <span className="text-[#EEFEFC]">qua</span><span className="text-[#609395]">.</span><span className="text-[#1AF3DC]">build</span><span className="text-[#609395]">(idea);</span></p>
+                <p className="editor-line"><span className="text-[#EEFEFC]">product</span><span className="text-[#609395]">.</span><span className="text-[#1AF3DC]">ship</span><span className="text-[#609395]">();</span> <span className="text-[#609395]">{"// build · ship · grow"}</span></p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
 
-        {choices.map((choice, index) => (
-          <motion.button
-            key={choice.label}
-            type="button"
-            aria-pressed={selected === index}
-            onClick={() => setSelected(selected === index ? null : index)}
-            whileHover={{ y: -5, scale: 1.025 }}
-            whileTap={{ scale: 0.97 }}
-            className={`designer-chip absolute z-20 hidden w-[280px] rounded-md border px-3.5 py-2.5 text-left backdrop-blur-md transition-colors sm:block ${choice.position} ${
-              selected === index
-                ? "border-[#1AF3DC]/75 bg-[#004F4C]/30 shadow-[0_10px_26px_rgba(0,79,76,0.34)] light:border-[#004F4C]/55 light:bg-[#004F4C]/15"
-                : "border-white/10 bg-[#0B2023]/65 hover:border-[#1AF3DC]/55 hover:bg-[#004F4C]/15 light:border-[#0B2023]/10 light:bg-white/75 light:hover:bg-[#004F4C]/10"
-            }`}
-          >
-            <span className="flex items-center gap-2">
-              <span className="grid h-7 w-7 place-items-center rounded border border-white/10 text-[#1AF3DC] light:border-[#0B2023]/10 light:text-[#004F4C]">
-                <choice.icon className="h-3.5 w-3.5" strokeWidth={1.8} />
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-[12px] font-medium text-[#EEFEFC]/90 light:text-[#0B2023]/90">{choice.label}</span>
-                <span className="mt-0.5 block truncate text-[10px] text-[#609395] light:text-[#0B2023]/60">{choice.detail}</span>
-              </span>
-              <span className="grid h-6 w-6 place-items-center rounded bg-white/[0.08] text-[#609395] light:bg-[#0B2023]/[0.06] light:text-[#0B2023]/60">
-                <Plus className="h-3.5 w-3.5" strokeWidth={1.8} />
-              </span>
-            </span>
-          </motion.button>
-        ))}
+        {choices.map((choice, index) => {
+          const display = selections[index] ?? choice;
+          const DisplayIcon = display.icon;
+          const isOpen = openChoice === index;
+          const hasSelection = Boolean(selections[index]);
+
+          return (
+            <motion.div
+              key={choice.label}
+              className={`designer-chip absolute hidden w-[160px] sm:block lg:w-[220px] ${choice.position} ${
+                isOpen ? "z-50" : "z-20"
+              }`}
+            >
+              <motion.button
+                type="button"
+                aria-expanded={isOpen}
+                aria-haspopup="listbox"
+                onClick={() => {
+                  if (isOpen) {
+                    setOpenChoice(null);
+                    return;
+                  }
+                  setOpenChoice(index);
+                }}
+                whileHover={{ y: -5, scale: 1.025 }}
+                whileTap={{ scale: 0.97 }}
+                className={`w-full rounded-md border px-3.5 py-2.5 text-left backdrop-blur-md transition-colors ${
+                  isOpen || hasSelection
+                    ? "border-[#1AF3DC]/75 bg-[#004F4C]/30 shadow-[0_10px_26px_rgba(0,79,76,0.34)] light:border-[#004F4C]/55 light:bg-[#004F4C]/15"
+                    : "border-white/10 bg-[#0B2023]/65 hover:border-[#1AF3DC]/55 hover:bg-[#004F4C]/15 light:border-[#0B2023]/10 light:bg-white/75 light:hover:bg-[#004F4C]/10"
+                }`}
+              >
+                <span className="flex items-center gap-2">
+                  <span className="grid h-7 w-7 place-items-center rounded border border-white/10 text-[#1AF3DC] light:border-[#0B2023]/10 light:text-[#004F4C]">
+                    <DisplayIcon className="h-3.5 w-3.5" strokeWidth={1.8} />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[12px] font-medium text-[#EEFEFC]/90 light:text-[#0B2023]/90">
+                      {display.label}
+                    </span>
+                    <span className="mt-0.5 hidden truncate text-[10px] text-[#609395] light:text-[#0B2023]/60 lg:block">
+                      {display.detail}
+                    </span>
+                  </span>
+                  <span className="grid h-6 w-6 place-items-center rounded bg-white/[0.08] text-[#609395] light:bg-[#0B2023]/[0.06] light:text-[#0B2023]/60">
+                    <ChevronDown
+                      className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                      strokeWidth={1.8}
+                    />
+                  </span>
+                </span>
+              </motion.button>
+
+              <AnimatePresence>
+                {isOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: choice.menuSide === "top" ? 8 : -8, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: choice.menuSide === "top" ? 8 : -8, scale: 0.97 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    role="listbox"
+                    aria-label={choice.label}
+                    className={`absolute left-0 w-full overflow-hidden rounded-md border border-[#1AF3DC]/25 bg-[#0B2023]/95 p-1.5 shadow-[0_18px_45px_rgba(0,79,76,0.38)] backdrop-blur-xl light:border-[#004F4C]/20 light:bg-[#EEFEFC]/95 ${
+                      choice.menuSide === "top"
+                        ? "bottom-[calc(100%+8px)]"
+                        : "top-[calc(100%+8px)]"
+                    }`}
+                  >
+                    {choice.options.map((option) => {
+                      const OptionIcon = option.icon;
+                      return (
+                        <button
+                          key={option.label}
+                          type="button"
+                          role="option"
+                          aria-selected={display.label === option.label}
+                          onClick={() => selectOption(index, option)}
+                          className="group flex w-full items-center gap-2.5 rounded px-2.5 py-2 text-left transition hover:bg-[#004F4C]/35 focus-visible:bg-[#004F4C]/35 focus-visible:outline-none light:hover:bg-[#004F4C]/10"
+                        >
+                          <span className="grid h-7 w-7 shrink-0 place-items-center rounded border border-[#1AF3DC]/20 text-[#1AF3DC] light:text-[#004F4C]">
+                            <OptionIcon className="h-3.5 w-3.5" strokeWidth={1.8} />
+                          </span>
+                          <span className="min-w-0">
+                            <span className="block text-[11px] font-medium text-[#EEFEFC] light:text-[#0B2023]">
+                              {option.label}
+                            </span>
+                            <span className="mt-0.5 block truncate text-[9px] text-[#609395]">
+                              {option.detail}
+                            </span>
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          );
+        })}
 
         <div className="absolute bottom-1 left-1/2 flex -translate-x-1/2 gap-2">
-          <button className="flex items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.03] px-4 py-2.5 text-[12px] text-[#609395] transition hover:border-[#1AF3DC]/60 hover:text-[#EEFEFC] light:border-[#0B2023]/15 light:bg-white/60 light:text-[#0B2023]/70 light:hover:text-[#0B2023]">
+          <button
+            type="button"
+            onClick={goBack}
+            className="flex items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.03] px-4 py-2.5 text-[12px] text-[#609395] transition hover:border-[#1AF3DC]/60 hover:text-[#EEFEFC] light:border-[#0B2023]/15 light:bg-white/60 light:text-[#0B2023]/70 light:hover:text-[#0B2023]"
+          >
             <Undo2 className="h-3.5 w-3.5" strokeWidth={1.8} /> Go back
           </button>
-          <button className="flex items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.03] px-4 py-2.5 text-[12px] text-[#609395] transition hover:border-[#1AF3DC]/60 hover:text-[#EEFEFC] light:border-[#0B2023]/15 light:bg-white/60 light:text-[#0B2023]/70 light:hover:text-[#0B2023]">
+          <button
+            type="button"
+            onClick={resetPlanner}
+            className="flex items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.03] px-4 py-2.5 text-[12px] text-[#609395] transition hover:border-[#1AF3DC]/60 hover:text-[#EEFEFC] light:border-[#0B2023]/15 light:bg-white/60 light:text-[#0B2023]/70 light:hover:text-[#0B2023]"
+          >
             <RotateCcw className="h-3.5 w-3.5" strokeWidth={1.8} /> Start over
           </button>
         </div>
