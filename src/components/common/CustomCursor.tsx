@@ -45,11 +45,11 @@ export default function CustomCursor() {
         animate={{
           scale: isHoveringTarget ? 2.1 : 1,
           backgroundColor: isHoveringTarget
-            ? "rgba(128, 180, 255, 0.18)"
-            : "rgba(52, 132, 255, 0)",
+            ? "rgba(26, 243, 220, 0.18)"
+            : "rgba(26, 243, 220, 0)",
           borderColor: isHoveringTarget
-            ? "rgba(128, 180, 255, 0.9)"
-            : "rgba(52, 132, 255, 0.65)",
+            ? "rgba(26, 243, 220, 0.9)"
+            : "rgba(26, 243, 220, 0.65)",
         }}
         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
         className="-ml-3 -mt-3 h-6 w-6 rounded-full border"

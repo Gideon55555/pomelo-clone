@@ -12,7 +12,6 @@ import UseCases from "@/components/sections/UseCases";
 export default function Home() {
   return (
     <>
-      
       <AmbientHue />
       <Navbar />
       <Hero />

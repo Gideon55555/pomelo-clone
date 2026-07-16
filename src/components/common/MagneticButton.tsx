@@ -36,7 +36,7 @@ export default function MagneticButton({
           aria-hidden="true"
           animate={{ opacity: [0.25, 0.55, 0.25] }}
           transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
-          className="pointer-events-none absolute -inset-1 rounded-md bg-[#3484ff]/45 blur-lg"
+          className="pointer-events-none absolute -inset-1 rounded-md bg-[#1AF3DC]/45 blur-lg"
         />
       )}
       <motion.button

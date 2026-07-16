@@ -139,11 +139,11 @@ export default function CardDesigner() {
   );
 
   return (
-    <section ref={sectionRef} id="services" className="relative isolate min-h-[720px] overflow-hidden bg-[#000339] px-5 pb-20 pt-24 text-white light:bg-[#f1f2f2] light:text-[#000339] sm:pt-28">
-      <div className="glow-accent absolute inset-0 bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(22,72,255,0.28),transparent_76%)] light:bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(52,132,255,0.15),transparent_76%)]" />
-      <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(52,132,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(52,132,255,0.04)_1px,transparent_1px)] [background-size:84px_84px]" />
-      <div className="hero-orb pointer-events-none absolute left-[25%] top-[53%] h-64 w-64 rounded-full bg-[#1648ff]/20 blur-[100px]" />
-      <div className="hero-orb pointer-events-none absolute right-[25%] top-[56%] h-64 w-64 rounded-full bg-[#3484ff]/15 blur-[100px] [animation-delay:-7s]" />
+    <section ref={sectionRef} id="services" className="relative isolate min-h-[720px] overflow-hidden bg-[#0B2023] px-5 pb-20 pt-24 text-[#EEFEFC] light:bg-[#EEFEFC] light:text-[#0B2023] sm:pt-28">
+      <div className="glow-accent absolute inset-0 bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(0,79,76,0.28),transparent_76%)] light:bg-[radial-gradient(ellipse_46%_40%_at_50%_62%,rgba(26,243,220,0.15),transparent_76%)]" />
+      <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(26,243,220,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(26,243,220,0.04)_1px,transparent_1px)] [background-size:84px_84px]" />
+      <div className="hero-orb pointer-events-none absolute left-[25%] top-[53%] h-64 w-64 rounded-full bg-[#004F4C]/20 blur-[100px]" />
+      <div className="hero-orb pointer-events-none absolute right-[25%] top-[56%] h-64 w-64 rounded-full bg-[#1AF3DC]/15 blur-[100px] [animation-delay:-7s]" />
 
       <motion.div
         initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
@@ -154,7 +154,7 @@ export default function CardDesigner() {
       >
         <Eyebrow
           text="Your product, your way"
-          className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#80b4ff] light:text-[#1648ff]"
+          className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#1AF3DC] light:text-[#004F4C]"
         />
         <h2 className="mx-auto mt-3 max-w-[570px] text-[43px] font-semibold leading-[0.98] tracking-[-0.065em] sm:text-[58px]">
           You define it,
@@ -166,12 +166,12 @@ export default function CardDesigner() {
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mt-5 max-w-[560px] text-[13px] leading-relaxed text-white/70 light:text-[#000339]/70 sm:text-[15px]"
+          className="mx-auto mt-5 max-w-[560px] text-[13px] leading-relaxed text-[#609395] light:text-[#0B2023]/70 sm:text-[15px]"
         >
           From discovery to launch, we turn your ideas into high-performing digital products built around your business.
         </motion.p>
         <div className="mt-5">
-          <MagneticButton className="rounded-[2px] bg-gradient-to-r from-[#1648ff] to-[#3484ff] px-6 py-3 text-[14px] font-medium text-white shadow-[0_8px_24px_rgba(22,72,255,0.35)]">
+          <MagneticButton className="rounded-[2px] bg-gradient-to-r from-[#004F4C] to-[#1AF3DC] px-6 py-3 text-[14px] font-medium text-[#EEFEFC] shadow-[0_8px_24px_rgba(0,79,76,0.35)]">
             Start your project
           </MagneticButton>
         </div>
@@ -193,9 +193,9 @@ export default function CardDesigner() {
           />
           <defs>
             <linearGradient id="designer-line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#1648ff" stopOpacity="0.55" />
-              <stop offset="50%" stopColor="#80b4ff" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#3484ff" stopOpacity="0.55" />
+              <stop offset="0%" stopColor="#004F4C" stopOpacity="0.55" />
+              <stop offset="50%" stopColor="#1AF3DC" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#1AF3DC" stopOpacity="0.55" />
             </linearGradient>
           </defs>
         </svg>
@@ -204,20 +204,20 @@ export default function CardDesigner() {
           ref={editorRef}
           animate={shouldReduceMotion ? undefined : { y: [0, -5, 0], rotate: [-1, 1, -1] }}
           transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-1/2 top-[112px] z-20 h-[170px] w-[310px] -translate-x-1/2 overflow-hidden rounded-xl border border-[#80b4ff]/45 bg-[linear-gradient(135deg,rgba(22,72,255,0.32),rgba(0,3,57,0.86))] text-left shadow-[0_24px_55px_rgba(22,72,255,0.36)]"
+          className="absolute left-1/2 top-[112px] z-20 h-[170px] w-[310px] -translate-x-1/2 overflow-hidden rounded-xl border border-[#1AF3DC]/45 bg-[linear-gradient(135deg,rgba(0,79,76,0.32),rgba(11,32,35,0.86))] text-left shadow-[0_24px_55px_rgba(0,79,76,0.36)]"
         >
-          <div className="flex items-center gap-2 border-b border-white/[0.08] bg-[#000339]/70 px-4 py-2.5">
-            <span className="h-2 w-2 rounded-full bg-[#1648ff]/80" />
-            <span className="h-2 w-2 rounded-full bg-[#3484ff]/70" />
-            <span className="h-2 w-2 rounded-full bg-[#80b4ff]/60" />
-            <span className="ml-2 text-[10px] font-medium tracking-[0.06em] text-white/60">
+          <div className="flex items-center gap-2 border-b border-white/[0.08] bg-[#0B2023]/70 px-4 py-2.5">
+            <span className="h-2 w-2 rounded-full bg-[#004F4C]/80" />
+            <span className="h-2 w-2 rounded-full bg-[#1AF3DC]/70" />
+            <span className="h-2 w-2 rounded-full bg-[#1AF3DC]/60" />
+            <span className="ml-2 text-[10px] font-medium tracking-[0.06em] text-[#609395]">
               your-product.tsx — qua
             </span>
           </div>
           <div className="space-y-2 px-4 py-3.5 font-mono text-[11px] leading-relaxed">
-            <p className="editor-line"><span className="text-[#3484ff]">import</span> <span className="text-white/85">&#123; idea &#125;</span> <span className="text-[#3484ff]">from</span> <span className="text-[#9ac8ff]">&quot;you&quot;</span>;</p>
-            <p className="editor-line"><span className="text-[#3484ff]">const</span> <span className="text-[#80b4ff]">product</span> <span className="text-white/60">=</span> <span className="text-[#3484ff]">await</span> <span className="text-[#b3d2ff]">qua</span><span className="text-white/60">.</span><span className="text-[#80b4ff]">build</span><span className="text-white/60">(idea);</span></p>
-            <p className="editor-line"><span className="text-[#b3d2ff]">product</span><span className="text-white/60">.</span><span className="text-[#80b4ff]">ship</span><span className="text-white/60">();</span> <span className="text-white/35">{"// build · ship · grow"}</span></p>
+            <p className="editor-line"><span className="text-[#1AF3DC]">import</span> <span className="text-[#EEFEFC]/85">&#123; idea &#125;</span> <span className="text-[#1AF3DC]">from</span> <span className="text-[#609395]">&quot;you&quot;</span>;</p>
+            <p className="editor-line"><span className="text-[#1AF3DC]">const</span> <span className="text-[#1AF3DC]">product</span> <span className="text-[#609395]">=</span> <span className="text-[#1AF3DC]">await</span> <span className="text-[#EEFEFC]">qua</span><span className="text-[#609395]">.</span><span className="text-[#1AF3DC]">build</span><span className="text-[#609395]">(idea);</span></p>
+            <p className="editor-line"><span className="text-[#EEFEFC]">product</span><span className="text-[#609395]">.</span><span className="text-[#1AF3DC]">ship</span><span className="text-[#609395]">();</span> <span className="text-[#609395]">{"// build · ship · grow"}</span></p>
           </div>
         </motion.div>
 
@@ -231,19 +231,19 @@ export default function CardDesigner() {
             whileTap={{ scale: 0.97 }}
             className={`designer-chip absolute z-20 hidden w-[280px] rounded-md border px-3.5 py-2.5 text-left backdrop-blur-md transition-colors sm:block ${choice.position} ${
               selected === index
-                ? "border-[#80b4ff]/75 bg-[#1648ff]/30 shadow-[0_10px_26px_rgba(22,72,255,0.34)] light:border-[#1648ff]/55 light:bg-[#1648ff]/15"
-                : "border-white/10 bg-[#000339]/65 hover:border-[#3484ff]/55 hover:bg-[#1648ff]/15 light:border-[#000339]/10 light:bg-white/75 light:hover:bg-[#1648ff]/10"
+                ? "border-[#1AF3DC]/75 bg-[#004F4C]/30 shadow-[0_10px_26px_rgba(0,79,76,0.34)] light:border-[#004F4C]/55 light:bg-[#004F4C]/15"
+                : "border-white/10 bg-[#0B2023]/65 hover:border-[#1AF3DC]/55 hover:bg-[#004F4C]/15 light:border-[#0B2023]/10 light:bg-white/75 light:hover:bg-[#004F4C]/10"
             }`}
           >
             <span className="flex items-center gap-2">
-              <span className="grid h-7 w-7 place-items-center rounded border border-white/10 text-[#80b4ff] light:border-[#000339]/10 light:text-[#1648ff]">
+              <span className="grid h-7 w-7 place-items-center rounded border border-white/10 text-[#1AF3DC] light:border-[#0B2023]/10 light:text-[#004F4C]">
                 <choice.icon className="h-3.5 w-3.5" strokeWidth={1.8} />
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block text-[12px] font-medium text-white/90 light:text-[#000339]/90">{choice.label}</span>
-                <span className="mt-0.5 block truncate text-[10px] text-white/60 light:text-[#000339]/60">{choice.detail}</span>
+                <span className="block text-[12px] font-medium text-[#EEFEFC]/90 light:text-[#0B2023]/90">{choice.label}</span>
+                <span className="mt-0.5 block truncate text-[10px] text-[#609395] light:text-[#0B2023]/60">{choice.detail}</span>
               </span>
-              <span className="grid h-6 w-6 place-items-center rounded bg-white/[0.08] text-white/65 light:bg-[#000339]/[0.06] light:text-[#000339]/60">
+              <span className="grid h-6 w-6 place-items-center rounded bg-white/[0.08] text-[#609395] light:bg-[#0B2023]/[0.06] light:text-[#0B2023]/60">
                 <Plus className="h-3.5 w-3.5" strokeWidth={1.8} />
               </span>
             </span>
@@ -251,10 +251,10 @@ export default function CardDesigner() {
         ))}
 
         <div className="absolute bottom-1 left-1/2 flex -translate-x-1/2 gap-2">
-          <button className="flex items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.03] px-4 py-2.5 text-[12px] text-white/70 transition hover:border-[#3484ff]/60 hover:text-white light:border-[#000339]/15 light:bg-white/60 light:text-[#000339]/70 light:hover:text-[#000339]">
+          <button className="flex items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.03] px-4 py-2.5 text-[12px] text-[#609395] transition hover:border-[#1AF3DC]/60 hover:text-[#EEFEFC] light:border-[#0B2023]/15 light:bg-white/60 light:text-[#0B2023]/70 light:hover:text-[#0B2023]">
             <Undo2 className="h-3.5 w-3.5" strokeWidth={1.8} /> Go back
           </button>
-          <button className="flex items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.03] px-4 py-2.5 text-[12px] text-white/70 transition hover:border-[#3484ff]/60 hover:text-white light:border-[#000339]/15 light:bg-white/60 light:text-[#000339]/70 light:hover:text-[#000339]">
+          <button className="flex items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.03] px-4 py-2.5 text-[12px] text-[#609395] transition hover:border-[#1AF3DC]/60 hover:text-[#EEFEFC] light:border-[#0B2023]/15 light:bg-white/60 light:text-[#0B2023]/70 light:hover:text-[#0B2023]">
             <RotateCcw className="h-3.5 w-3.5" strokeWidth={1.8} /> Start over
           </button>
         </div>

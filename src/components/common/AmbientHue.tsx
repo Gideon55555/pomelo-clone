@@ -5,7 +5,7 @@ import { FULL_MOTION, gsap, useGSAP } from "@/lib/gsap";
 
 /**
  * Drifts the accent hue of the radial glow overlays (elements with
- * .glow-accent) from blue toward indigo and back as the page scrolls.
+ * .glow-accent) across a narrow teal range as the page scrolls.
  * Only the --accent-hue CSS var animates; surfaces stay untouched so the
  * light/dark theme backgrounds are unaffected.
  */
@@ -26,9 +26,9 @@ export default function AmbientHue() {
         });
         tl.fromTo(
           root,
-          { "--accent-hue": 225 },
-          { "--accent-hue": 252, ease: "none" }
-        ).to(root, { "--accent-hue": 225, ease: "none" });
+          { "--accent-hue": 174 },
+          { "--accent-hue": 184, ease: "none" }
+        ).to(root, { "--accent-hue": 174, ease: "none" });
 
         return () => {
           root.style.removeProperty("--accent-hue");
