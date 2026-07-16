@@ -2,13 +2,13 @@
 
 import { motion, useReducedMotion, type PanInfo } from "framer-motion";
 import {
+  Braces,
   ChevronLeft,
   ChevronRight,
-  Clock3,
-  CreditCard,
+  CloudCog,
   Globe2,
-  Landmark,
-  Trophy,
+  PanelsTopLeft,
+  Smartphone,
   type LucideIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -23,39 +23,39 @@ type UseCase = {
 
 const useCases: UseCase[] = [
   {
-    title: "Corporate Cards",
-    shortTitle: "Corporate Cards",
-    description: "Smart controls and real-time visibility for every business expense.",
-    icon: CreditCard,
-    symbol: "Q",
+    title: "Mobile Applications",
+    shortTitle: "Mobile Applications",
+    description: "Native and cross-platform mobile experiences built for growth.",
+    icon: Smartphone,
+    symbol: "APP",
   },
   {
-    title: "Engagement & Rewards",
-    shortTitle: "Engagement & Rewards",
-    description: "Reward experiences designed to build lasting customer relationships.",
-    icon: Trophy,
-    symbol: "★",
-  },
-  {
-    title: "Global Cards",
-    shortTitle: "Global Cards",
-    description: "Issue cards to users across markets with a rapid time-to-market.",
+    title: "Web Platforms",
+    shortTitle: "Web Platforms",
+    description: "Fast, accessible web products engineered for real-world performance.",
     icon: Globe2,
-    symbol: "¤",
+    symbol: "WEB",
   },
   {
-    title: "Single-use cards",
-    shortTitle: "Single-use cards",
-    description: "Secure virtual cards generated for a single payment or purpose.",
-    icon: Clock3,
-    symbol: "1",
+    title: "Custom Software",
+    shortTitle: "Custom Software",
+    description: "Purpose-built systems that simplify complex business operations.",
+    icon: Braces,
+    symbol: "{ }",
   },
   {
-    title: "Traditional Banking",
-    shortTitle: "Traditional Banking",
-    description: "Modern infrastructure that connects established banking experiences.",
-    icon: Landmark,
-    symbol: "Q",
+    title: "Cloud & DevOps",
+    shortTitle: "Cloud & DevOps",
+    description: "Scalable cloud infrastructure, automation, monitoring, and delivery.",
+    icon: CloudCog,
+    symbol: "CI",
+  },
+  {
+    title: "Product Design",
+    shortTitle: "Product Design",
+    description: "Clear, intuitive digital experiences shaped around your users.",
+    icon: PanelsTopLeft,
+    symbol: "UI",
   },
 ];
 
@@ -86,8 +86,12 @@ function CardIllustration({ item, active }: { item: UseCase; active: boolean }) 
         <>
           <div className="absolute h-[112px] w-[186px] -rotate-[17deg] rounded-[50%] border border-[#1AF3DC]/45" />
           <div className="absolute h-[94px] w-[160px] rotate-[27deg] rounded-[50%] border border-[#609395]/25" />
-          <span className="absolute left-4 top-16 text-[10px] font-semibold text-[#EEFEFC]">¤</span>
-          <span className="absolute right-5 top-12 text-[9px] font-semibold text-[#609395]">Q</span>
+          <span className="absolute left-4 top-16 font-mono text-[9px] font-semibold text-[#EEFEFC]">
+            &lt;/&gt;
+          </span>
+          <span className="absolute right-5 top-12 font-mono text-[9px] font-semibold text-[#609395]">
+            01
+          </span>
         </>
       )}
       <div

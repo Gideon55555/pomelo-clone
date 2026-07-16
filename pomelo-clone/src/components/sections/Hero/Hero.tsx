@@ -161,14 +161,21 @@ export default function Hero() {
             </span>
           </Reveal>
 
-          <h1 className="mt-7 text-[46px] font-semibold leading-[0.96] tracking-[-0.065em] sm:mt-8 sm:text-[62px] lg:text-[68px]">
+          <h1 className="mt-7 text-[52px] font-semibold leading-[0.94] tracking-[-0.065em] sm:mt-8 sm:text-[72px] lg:text-[82px]">
             <SplitText text="We build things" charClassName="hero-char" />
             <br />
-            <SplitText
-              text="that work"
-              charClassName="hero-char-accent"
-              wordClassName="bg-gradient-to-r from-[#004F4C] via-[#1AF3DC] to-[#1AF3DC] bg-clip-text text-transparent"
-            />
+            <span aria-label="that work">
+              {["that", "work"].map((word, index) => (
+                <span
+                  key={word}
+                  aria-hidden="true"
+                  className="hero-char-accent inline-block bg-gradient-to-r from-[#004F4C] via-[#1AF3DC] to-[#1AF3DC] bg-clip-text text-transparent will-change-transform"
+                >
+                  {word}
+                  {index === 0 ? "\u00A0" : ""}
+                </span>
+              ))}
+            </span>
           </h1>
 
           <Reveal delay={0.45} blur>

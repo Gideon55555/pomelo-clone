@@ -6,6 +6,7 @@ import CardDesigner from "@/components/sections/CardDesigner";
 import Contact from "@/components/sections/Contact";
 import Hero from "@/components/sections/Hero";
 import ModularSystem from "@/components/sections/ModularSystem";
+import PartnerMarquee from "@/components/sections/PartnerMarquee";
 import Testimonials from "@/components/sections/Testimonials";
 import UseCases from "@/components/sections/UseCases";
 
@@ -15,6 +16,7 @@ export default function Home() {
       <AmbientHue />
       <Navbar />
       <Hero />
+      <PartnerMarquee />
       <UseCases />
       <CardDesigner />
       <ModularSystem />
